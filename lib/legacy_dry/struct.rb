@@ -1,5 +1,5 @@
 require 'dry-types'
-require 'dry-equalizer'
+require 'legacy_dry/equalizer'
 require 'legacy_dry/core/extensions'
 require 'legacy_dry/core/constants'
 

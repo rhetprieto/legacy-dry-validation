@@ -5,7 +5,7 @@ require 'set'
 require 'concurrent'
 
 require 'dry-container'
-require 'dry-equalizer'
+require 'legacy_dry/equalizer'
 require 'legacy_dry/core/extensions'
 require 'legacy_dry/core/constants'
 require 'legacy_dry/core/class_attributes'
