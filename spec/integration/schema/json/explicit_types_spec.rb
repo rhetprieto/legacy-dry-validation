@@ -1,7 +1,7 @@
-RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
+RSpec.describe LegacyDry::Validation::Schema::JSON, 'explicit types' do
   context 'single type spec without rules' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
         required(:bdate, :date)
       end
@@ -14,7 +14,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'single type spec with rules' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
         required(:bdate, :date).value(:date?, gt?: Date.new(2009))
       end
@@ -28,7 +28,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'sum type spec without rules' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
         required(:bdate, [:nil, :date])
       end
@@ -42,7 +42,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'sum type spec with rules' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
         required(:bdate, [:nil, :date]).maybe(:date?, gt?: Date.new(2008))
       end
@@ -57,7 +57,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'using a type object' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
         required(:bdate, Types::JSON::Nil | Types::JSON::Date)
       end
@@ -71,7 +71,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'nested schema' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
 
         required(:user).schema do
@@ -123,7 +123,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
 
   context 'nested schema with arrays' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         configure { config.type_specs = true }
 
         required(:song).schema do
@@ -141,14 +141,14 @@ RSpec.describe Dry::Validation::Schema::JSON, 'explicit types' do
     it 'uses form coercion for nested input' do
       input = {
         'song' => {
-          'title' => 'dry-rb is awesome lala',
+          'title' => 'legacy_dry-rb is awesome lala',
           'tags' => [{ 'name' => 'red' }, { 'name' => 'blue' }]
         }
       }
 
       expect(schema.(input).to_h).to eql(
         song: {
-          title: 'dry-rb is awesome lala',
+          title: 'legacy_dry-rb is awesome lala',
           tags: [{ name: 'red' }, { name: 'blue' }]
         }
       )

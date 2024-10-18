@@ -1,8 +1,8 @@
-RSpec.describe 'Dry::Validation::Schema::Form', 'defining a schema' do
-  before(:all) { require 'dry/validation/compat/form' }
+RSpec.describe 'LegacyDry::Validation::Schema::Form', 'defining a schema' do
+  before(:all) { require 'legacy_dry/validation/compat/form' }
 
   subject(:schema) do
-    Dry::Validation.Form do
+    LegacyDry::Validation.Form do
       configure do
         def email?(value)
           true
@@ -122,7 +122,7 @@ RSpec.describe 'Dry::Validation::Schema::Form', 'defining a schema' do
 
   describe 'with an each and nested schema' do
     subject(:schema) do
-      Dry::Validation.Form do
+      LegacyDry::Validation.Form do
         required(:items).each do
           schema do
             required(:title).filled(:str?)
@@ -144,7 +144,7 @@ RSpec.describe 'Dry::Validation::Schema::Form', 'defining a schema' do
 
   describe 'symbolizing keys when coercion fails' do
     subject(:schema) do
-      Dry::Validation.Form do
+      LegacyDry::Validation.Form do
         required(:email).value(size?: 8..60)
         required(:birthdate).value(:date?)
         required(:age).value(:int?, gt?: 23)
@@ -194,7 +194,7 @@ RSpec.describe 'Dry::Validation::Schema::Form', 'defining a schema' do
 
   describe 'with nested schema in a high-level rule' do
     subject(:schema) do
-      Dry::Validation.Form do
+      LegacyDry::Validation.Form do
         required(:address).maybe(:hash?)
 
         required(:delivery).filled(:bool?)
@@ -206,7 +206,7 @@ RSpec.describe 'Dry::Validation::Schema::Form', 'defining a schema' do
     end
 
     before do
-      AddressSchema = Dry::Validation.Form do
+      AddressSchema = LegacyDry::Validation.Form do
         required(:city).filled
         required(:zipcode).filled(:int?)
       end

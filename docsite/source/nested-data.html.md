@@ -1,7 +1,7 @@
 ---
 title: Nested Data
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 `dry-validation` supports validation of nested data, this includes both hashes and arrays as the validation input.
@@ -13,7 +13,7 @@ To define validation rules for a nested hash you can use the same DSL on a speci
 ``` ruby
 require 'dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:address).schema do
     required(:city).filled(min_size?: 3)
 
@@ -49,7 +49,7 @@ If a nested hash could be nil, simply use `maybe` macro with a block:
 ``` ruby
 require 'dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:address).maybe do
     schema do
       required(:city).filled(min_size?: 3)
@@ -72,7 +72,7 @@ schema.(address: nil).success? # true
 You can use the `each` macro for validating each element in an array:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:phone_numbers).each(:str?)
 end
 
@@ -94,7 +94,7 @@ puts errors.inspect
 Similarly, you use `each` and `schema` to validate an array of hashes:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:people).each do
     schema do
       required(:name).filled(:str?)

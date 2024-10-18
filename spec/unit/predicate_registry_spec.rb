@@ -1,4 +1,4 @@
-require 'dry/validation/predicate_registry'
+require 'legacy_dry/validation/predicate_registry'
 
 RSpec.describe PredicateRegistry do
   subject!(:predicate_registry) { schema_class.registry }

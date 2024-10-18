@@ -13,7 +13,7 @@ task :run_specs do
 
   Dir[SPEC_ROOT.join('shared/**/*.rb')].each(&method(:load))
 
-  Dry::Validation.load_extensions(:monads, :struct)
+  LegacyDry::Validation.load_extensions(:monads, :struct)
   ext_result = RSpec::Core::Runner.run(['spec'])
 
   exit [core_result, ext_result].max

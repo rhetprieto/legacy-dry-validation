@@ -1,6 +1,6 @@
-require 'dry-validation'
+require 'legacy-dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:address).schema do
     required(:city).filled(min_size?: 3)
 

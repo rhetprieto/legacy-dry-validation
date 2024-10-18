@@ -1,7 +1,7 @@
 ---
 title: Working With Schemas
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 A schema is an object which contains a list of rules that will be applied to its input when you call a schema. It returns a `result object` which provides an API to retrieve `error messages` and access to the validation output.
@@ -22,7 +22,7 @@ Calling a schema will apply all its rules to the input. High-level rules defined
 Example:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:email).filled
   required(:age).filled
 end
@@ -45,7 +45,7 @@ result.failure?
 ### Defining Base Schema Class
 
 ``` ruby
-class AppSchema < Dry::Validation::Schema
+class AppSchema < LegacyDry::Validation::Schema
   configure do |config|
     config.messages_file = '/my/app/config/locales/en.yml'
     config.messages = :i18n
@@ -61,7 +61,7 @@ class AppSchema < Dry::Validation::Schema
 end
 
 # now you can build other schemas on top of the base one:
-Dry::Validation.Schema(AppSchema) do
+LegacyDry::Validation.Schema(AppSchema) do
   # define your rules
 end
 ```
@@ -91,7 +91,7 @@ result.errors(locale: :pl)
 In addition to error messages you can also access hints, which are generated from your rules. While `errors` tells you which predicate checks failed, `hints` tells you which additional predicate checks weren't evaluated at all because an earlier predicate failed:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:email).filled
   required(:age).filled(gt?: 18)
 end
@@ -126,7 +126,7 @@ result.messages
 When validation requires external dependencies, like an access to a database or some remote HTTP api, you can set up your schema to accept additional objects as dependencies that will be injected:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     option :my_thing, MyThing
 
@@ -140,7 +140,7 @@ end
 You can also inject objects dynamically at run-time:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     option :my_thing
 

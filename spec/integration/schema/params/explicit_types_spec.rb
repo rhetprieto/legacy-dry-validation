@@ -1,7 +1,7 @@
-RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
+RSpec.describe LegacyDry::Validation::Schema::Params, 'explicit types' do
   context 'single type spec without rules' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, :integer)
       end
@@ -14,7 +14,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'integer' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, :integer)
       end
@@ -27,7 +27,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'single type spec with rules' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, :integer).value(:int?, gt?: 18)
       end
@@ -41,7 +41,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'single type spec with an array' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:nums, [:integer])
       end
@@ -54,7 +54,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'sum type spec without rules' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, [:nil, :integer])
       end
@@ -68,7 +68,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'sum type spec with rules' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, [:nil, :integer]).maybe(:int?, gt?: 18)
       end
@@ -83,7 +83,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'using a type object' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
         required(:age, Types::Params::Nil | Types::Params::Integer)
       end
@@ -97,7 +97,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'nested schema' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
 
         required(:user).schema do
@@ -149,7 +149,7 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
 
   context 'nested schema with arrays' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
 
         required(:song).schema do
@@ -179,14 +179,14 @@ RSpec.describe Dry::Validation::Schema::Params, 'explicit types' do
     it 'uses params coercion for nested input' do
       input = {
         'song' => {
-          'title' => 'dry-rb is awesome lala',
+          'title' => 'legacy_dry-rb is awesome lala',
           'tags' => [{ 'name' => 'red' }, { 'name' => 'blue' }]
         }
       }
 
       expect(schema.(input).to_h).to eql(
         song: {
-          title: 'dry-rb is awesome lala',
+          title: 'legacy_dry-rb is awesome lala',
           tags: [{ name: 'red' }, { name: 'blue' }]
         }
       )

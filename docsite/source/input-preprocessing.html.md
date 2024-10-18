@@ -1,7 +1,7 @@
 ---
 title: Input Preprocessing
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 Sometimes, the data coming from outside needs to be preprocessed before being validated. Think of extraneous spaces before or after a string, for example.
@@ -11,17 +11,17 @@ Sometimes, the data coming from outside needs to be preprocessed before being va
 In the context of a web application form, it is common to ask for people's names. The name should not contain spaces before or after the other characters. It would be possible to reject such strings as invalid, but that would make the application harder to use. Instead, we can let dry-validation preprocess the input to remove such spaces. To that end, we will create a new type of validator:
 
 ```ruby
-require "dry-validation"
+require "legacy_dry-validation"
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 
   Name = Types::String.constructor do |str|
     str ? str.strip.chomp : str
   end
 end
 
-SignUpForm = Dry::Validation.Params do
+SignUpForm = LegacyDry::Validation.Params do
   configure do
     config.type_specs = true
   end
@@ -54,17 +54,17 @@ When you use explicit type specs, you must specify the types you expect your val
 If you have a list of fields on your form and you wanted to exclude empty elements, you could also preprocess the array elements to exclude empty items:
 
 ```ruby
-require "dry-validation"
+require "legacy_dry-validation"
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 
   Names = Types::Array.constructor do |elements|
     elements ? elements.map(&:to_s).map(&:chomp).map(&:strip).reject(&:empty?) : elements
   end
 end
 
-InvitationForm = Dry::Validation.Params do
+InvitationForm = LegacyDry::Validation.Params do
   configure do
     config.type_specs = true
   end

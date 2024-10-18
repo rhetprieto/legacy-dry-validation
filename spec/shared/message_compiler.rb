@@ -1,8 +1,8 @@
 RSpec.shared_context :message_compiler do
-  subject(:compiler) { Dry::Validation::MessageCompiler.new(messages) }
+  subject(:compiler) { LegacyDry::Validation::MessageCompiler.new(messages) }
 
   let(:messages) do
-    Dry::Validation::Messages.default
+    LegacyDry::Validation::Messages.default
   end
 
   let(:result) do

@@ -1,5 +1,5 @@
-RSpec.describe Dry::Validation::InputProcessorCompiler::JSON, '#call' do
-  subject(:compiler) { Dry::Validation::InputProcessorCompiler::JSON.new }
+RSpec.describe LegacyDry::Validation::InputProcessorCompiler::JSON, '#call' do
+  subject(:compiler) { LegacyDry::Validation::InputProcessorCompiler::JSON.new }
 
   include_context 'predicate helper'
 

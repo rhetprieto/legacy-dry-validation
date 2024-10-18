@@ -1,6 +1,6 @@
-require 'dry-validation'
+require 'legacy-dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     def self.messages
       super.merge(en: {

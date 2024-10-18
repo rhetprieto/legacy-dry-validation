@@ -1,4 +1,4 @@
-require 'dry/validation/messages/i18n'
+require 'legacy_dry/validation/messages/i18n'
 
 RSpec.describe Messages::I18n do
   subject(:messages) { Messages::I18n.new }

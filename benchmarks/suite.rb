@@ -1,5 +1,5 @@
 require 'i18n'
-require 'dry-validation'
+require 'legacy-dry-validation'
 
 I18n.locale = :en
 I18n.backend.load_translations

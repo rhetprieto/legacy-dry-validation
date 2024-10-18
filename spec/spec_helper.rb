@@ -11,8 +11,8 @@ begin
 rescue LoadError
 end
 
-require 'dry-validation'
-require 'dry/core/constants'
+require 'legacy-dry-validation'
+require 'legacy_dry/core/constants'
 require 'ostruct'
 
 SPEC_ROOT = Pathname(__dir__)
@@ -20,13 +20,13 @@ SPEC_ROOT = Pathname(__dir__)
 Dir[SPEC_ROOT.join('shared/**/*.rb')].each(&method(:require))
 Dir[SPEC_ROOT.join('support/**/*.rb')].each(&method(:require))
 
-include Dry::Validation
+include LegacyDry::Validation
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 end
 
-Dry::Validation::Deprecations.configure do |config|
+LegacyDry::Validation::Deprecations.configure do |config|
   config.logger = Logger.new(SPEC_ROOT.join('../log/deprecations.log'))
 end
 
@@ -36,7 +36,7 @@ RSpec.configure do |config|
 
   config.after do
     if defined?(I18n)
-      I18n.load_path = Dry::Validation.messages_paths.dup
+      I18n.load_path = LegacyDry::Validation.messages_paths.dup
       I18n.backend.reload!
     end
   end
@@ -51,9 +51,9 @@ RSpec.configure do |config|
       end
     end
 
-    Dry::Validation::Messages::Abstract.instance_variable_set('@cache', nil)
-    Dry::Validation::Messages::YAML.instance_variable_set('@cache', nil)
-    Dry::Validation::Messages::I18n.instance_variable_set('@cache', nil) if defined?(I18n)
+    LegacyDry::Validation::Messages::Abstract.instance_variable_set('@cache', nil)
+    LegacyDry::Validation::Messages::YAML.instance_variable_set('@cache', nil)
+    LegacyDry::Validation::Messages::I18n.instance_variable_set('@cache', nil) if defined?(I18n)
   end
 
   config.after do

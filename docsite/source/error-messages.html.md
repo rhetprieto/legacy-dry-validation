@@ -1,7 +1,7 @@
 ---
 title: Error Messages
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 By default `dry-validation` comes with a set of pre-defined error messages for every built-in predicate. They are defined in [a yaml file](https://github.com/dry-rb/dry-validation/blob/master/config/errors.yml) which is shipped with the gem. This file is compatible with `I18n` format.
@@ -9,7 +9,7 @@ By default `dry-validation` comes with a set of pre-defined error messages for e
 You can provide your own messages and configure your schemas to use it like that:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure { config.messages_file = '/path/to/my/errors.yml' }
 end
 ```
@@ -17,7 +17,7 @@ end
 You can also provide a namespace per-schema that will be used by default:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure { config.namespace = :user }
 end
 ```
@@ -58,7 +58,7 @@ en:
 Given the yaml file above, messages lookup works as follows:
 
 ``` ruby
-messages = Dry::Validation::Messages::YAML.load(%w(/path/to/our/errors.yml))
+messages = LegacyDry::Validation::Messages::YAML.load(%w(/path/to/our/errors.yml))
 
 # matching arg type for size? predicate
 messages[:size?, rule: :name, arg_type: Fixnum] # => "size must be %{num}"
@@ -91,7 +91,7 @@ If you are using `i18n` gem and load it before `dry-validation` then you'll be a
 require 'i18n'
 require 'dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure { config.messages = :i18n }
 
   required(:email).filled

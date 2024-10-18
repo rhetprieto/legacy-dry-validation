@@ -1,7 +1,7 @@
-RSpec.describe Dry::Validation::Schema, 'for a hash' do
+RSpec.describe LegacyDry::Validation::Schema, 'for a hash' do
   context 'without type specs' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         hash? do
           required(:prefix).filled
           required(:value).filled
@@ -22,7 +22,7 @@ RSpec.describe Dry::Validation::Schema, 'for a hash' do
 
   context 'with type specs' do
     subject(:schema) do
-      Dry::Validation.Params do
+      LegacyDry::Validation.Params do
         configure { config.type_specs = true }
 
         hash? do

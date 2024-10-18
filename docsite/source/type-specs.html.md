@@ -1,7 +1,7 @@
 ---
 title: Explicit type specs
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 Default behavior for coercions is to automatically infer it from rule definitions. It’s smart and reduces code duplication; however, it turned out to be extremely slow. Furthermore, it is an implicit behavior that we don’t really like. That’s why it’s been decided that we’ll be separating coercions from validation rules for 1.0.0. This release is the first step in that direction. Final API is not yet discovered, ideas and feedback are much appreciated!
@@ -9,7 +9,7 @@ Default behavior for coercions is to automatically infer it from rule definition
 To enable explicit type specifications, which will be used to configure coercion, you need to configure your schema:
 
 ``` ruby
-UserSchema = Dry::Validation.Params do
+UserSchema = LegacyDry::Validation.Params do
   # enable type specs
   configure { config.type_specs = true }
 

@@ -1,13 +1,13 @@
 ---
 title: Extensions
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 sections:
   - monads
   - struct
 ---
 
-`dry-validation` can be extended with extension. Those extensions are loaded with `Dry::Validation.load_extensions`.
+`dry-validation` can be extended with extension. Those extensions are loaded with `LegacyDry::Validation.load_extensions`.
 
 Extensions available:
 

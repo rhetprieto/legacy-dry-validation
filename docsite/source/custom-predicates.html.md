@@ -1,13 +1,13 @@
 ---
 title: Custom Predicates
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 You can simply define predicate methods on your schema object:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     def email?(value)
       ! /magical-regex-that-matches-emails/.match(value).nil?
@@ -22,14 +22,14 @@ You can also re-use a predicate container across multiple schemas:
 
 ``` ruby
 module MyPredicates
-  include Dry::Logic::Predicates
+  include LegacyDry::Logic::Predicates
 
   predicate(:email?) do |value|
     ! /magical-regex-that-matches-emails/.match(value).nil?
   end
 end
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     predicates(MyPredicates)
   end

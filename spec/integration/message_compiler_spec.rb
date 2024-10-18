@@ -1,6 +1,6 @@
-require 'dry/validation/message_compiler'
+require 'legacy_dry/validation/message_compiler'
 
-RSpec.describe Dry::Validation::MessageCompiler do
+RSpec.describe LegacyDry::Validation::MessageCompiler do
   subject(:message_compiler) { MessageCompiler.new(messages) }
 
   include_context 'predicate helper'

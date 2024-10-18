@@ -1,7 +1,7 @@
 ---
 title: High-level Rules
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 Often it is not enough to define simple type-checking rules. In addition to those you need to be able to specify higher-level rules that rely on other rules. This can be achieved using the `rule` interface which can access already defined rules for specific keys.
@@ -9,7 +9,7 @@ Often it is not enough to define simple type-checking rules. In addition to thos
 For example let's say we have a schema with 3 keys, `:barcode`, `:job_number` and `:sample_number` and we need to make sure that when barcode is provided both job and sample numbers are not provided. The low-level checks need to make sure that individual values have the correct state and on top of those we can define our high-level rule:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:barcode).maybe(:str?)
 
   required(:job_number).maybe(:int?)
@@ -29,7 +29,7 @@ This way we have validations for individual keys and the high-level `:barcode_on
 Similar to rules that depend on results from other rules, you can define high-level rules that need to apply additional predicates to values provided by other rules. For example, let's say we want to validate presence of an `email` address but only when `login` value is set to `true`:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:login).filled(:bool?)
   required(:email).maybe(:str?)
 
@@ -44,7 +44,7 @@ This translates to "login set to true implies that email must be present".
 We can also easily specify a rule for the absence of an email:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:login).filled(:bool?)
   required(:email).maybe(:str?)
 
@@ -59,7 +59,7 @@ Notice that you must add the `:email_absence` message to the configuration if yo
 When the validity of one attribute depends on the value of another attribute, you can use `value`:
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:started).filled(:date?)
   required(:ended).filled(:date?)
 

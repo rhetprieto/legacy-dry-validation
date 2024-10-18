@@ -1,7 +1,7 @@
 ---
 title: Form Validation
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 Probably the most common use case is to validate form params. This is a special kind of a validation for a couple of reasons:
@@ -13,7 +13,7 @@ Probably the most common use case is to validate form params. This is a special 
 For that reason, `dry-validation` ships with `Params` validation:
 
 ``` ruby
-schema = Dry::Validation.Params do
+schema = LegacyDry::Validation.Params do
   required(:email).filled(:str?)
 
   required(:age).filled(:int?, gt?: 18)
@@ -35,7 +35,7 @@ puts errors.inspect
 Your schema will automatically coerce empty strings to `nil` provided that you allow a value to be nil:
 
 ``` ruby
-schema = Dry::Validation.Params do
+schema = LegacyDry::Validation.Params do
   required(:email).filled(:str?)
 
   required(:age).maybe(:int?, gt?: 18)

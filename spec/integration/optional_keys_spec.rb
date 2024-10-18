@@ -1,7 +1,7 @@
-RSpec.describe Dry::Validation::Schema do
+RSpec.describe LegacyDry::Validation::Schema do
   describe 'defining schema with optional keys' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         optional(:email) { |email| email.filled? }
 
         required(:address).schema do

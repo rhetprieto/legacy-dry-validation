@@ -1,7 +1,7 @@
 RSpec.describe Schema, 'using high-level rules' do
   context 'composing rules' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         configure do
           def self.messages
             Messages.default.merge(
@@ -36,7 +36,7 @@ RSpec.describe Schema, 'using high-level rules' do
 
   context 'composing specific predicates' do
     let(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         configure do
           def self.messages
             Messages.default.merge(
@@ -82,7 +82,7 @@ RSpec.describe Schema, 'using high-level rules' do
 
   describe 'with nested schemas' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         required(:command).filled(:str?, included_in?: %w(First Second))
 
         required(:args).filled(:hash?)
