@@ -16,7 +16,7 @@ module LegacyDry
   #
   # @example
   #
-  #   container = Dry::Container.new
+  #   container = LegacyDry::Container.new
   #   container.register(:item, 'item')
   #   container.resolve(:item)
   #   => 'item'
@@ -31,6 +31,6 @@ module LegacyDry
   #
   # @api public
   class Container
-    include ::Dry::Container::Mixin
+    include LegacyDry::Container::Mixin
   end
 end

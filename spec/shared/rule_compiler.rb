@@ -1,8 +1,8 @@
-require 'dry/logic/rule_compiler'
-require 'dry/logic/predicates'
+require 'legacy_dry/logic/rule_compiler'
+require 'legacy_dry/logic/predicates'
 
 RSpec.shared_context 'rule compiler' do
   let(:rule_compiler) do
-    Dry::Logic::RuleCompiler.new(Dry::Logic::Predicates)
+    LegacyDry::Logic::RuleCompiler.new(LegacyDry::Logic::Predicates)
   end
 end

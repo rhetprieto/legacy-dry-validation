@@ -1,4 +1,4 @@
-require 'dry/logic/operations/abstract'
+require 'legacy_dry/logic/operations/abstract'
 
 module LegacyDry
   module Logic

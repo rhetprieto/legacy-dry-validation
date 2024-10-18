@@ -25,7 +25,7 @@ module LegacyDry
       # @option options [Symbol] :call
       #   Whether the item should be called when resolved
       #
-      # @raise [Dry::Container::Error]
+      # @raise [LegacyDry::Container::Error]
       #   If an item is already registered with the given key
       #
       # @return [Mixed]
@@ -43,7 +43,7 @@ module LegacyDry
       end
 
       def factory
-        @factory ||= ::Dry::Container::Item::Factory.new
+        @factory ||= ::LegacyDry::Container::Item::Factory.new
       end
     end
   end

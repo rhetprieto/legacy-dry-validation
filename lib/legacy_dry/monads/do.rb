@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'dry/monads/list'
-require 'dry/monads/do/mixin'
-require 'dry/monads/constants'
+require 'legacy_dry/monads/list'
+require 'legacy_dry/monads/do/mixin'
+require 'legacy_dry/monads/constants'
 
 module LegacyDry
   module Monads
@@ -34,9 +34,9 @@ module LegacyDry
         # @example A complete example
         #
         #   class CreateUser
-        #     include Dry::Monads::Result::Mixin
-        #     include Dry::Monads::Try::Mixin
-        #     include Dry::Monads::Do.for(:call)
+        #     include LegacyDry::Monads::Result::Mixin
+        #     include LegacyDry::Monads::Try::Mixin
+        #     include LegacyDry::Monads::Do.for(:call)
         #
         #     attr_reader :user_repo
         #
@@ -100,7 +100,7 @@ module LegacyDry
           super
 
           # Actually mixes in Do::All
-          require 'dry/monads/do/all'
+          require 'legacy_dry/monads/do/all'
           base.include All
         end
 

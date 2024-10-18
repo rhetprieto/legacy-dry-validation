@@ -1,7 +1,7 @@
-require 'dry/inflector'
+require 'legacy_dry/inflector'
 
 module LegacyDry
   module Types
-    Inflector = Dry::Inflector.new
+    Inflector = LegacyDry::Inflector.new
   end
 end

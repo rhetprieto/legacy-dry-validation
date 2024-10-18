@@ -14,7 +14,7 @@ In the context of a web application form, it is common to ask for people's names
 require "legacy_dry-validation"
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 
   Name = Types::String.constructor do |str|
     str ? str.strip.chomp : str
@@ -57,7 +57,7 @@ If you have a list of fields on your form and you wanted to exclude empty elemen
 require "legacy_dry-validation"
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 
   Names = Types::Array.constructor do |elements|
     elements ? elements.map(&:to_s).map(&:chomp).map(&:strip).reject(&:empty?) : elements

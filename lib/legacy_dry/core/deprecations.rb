@@ -22,8 +22,8 @@ module LegacyDry
     #
     # @example You also can use this module for your custom messages
     #
-    #   Dry::Core::Deprecations.announce("Foo", "use bar instead")
-    #   Dry::Core::Deprecations.warn("Baz is going to be removed soon")
+    #   LegacyDry::Core::Deprecations.announce("Foo", "use bar instead")
+    #   LegacyDry::Core::Deprecations.warn("Baz is going to be removed soon")
     #
     # @api public
     module Deprecations

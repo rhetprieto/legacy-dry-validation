@@ -1,8 +1,8 @@
 module LegacyDry
   class Struct
     class Constructor
-      include Dry::Equalizer(:type)
-      include Dry::Types::Type
+      include LegacyDry::Equalizer(:type)
+      include LegacyDry::Types::Type
 
       # @return [#call]
       attr_reader :fn

@@ -1,5 +1,5 @@
-require 'dry/logic/operations/unary'
-require 'dry/logic/result'
+require 'legacy_dry/logic/operations/unary'
+require 'legacy_dry/logic/result'
 
 module LegacyDry
   module Logic

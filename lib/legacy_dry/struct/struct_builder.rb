@@ -1,18 +1,18 @@
-require 'dry/types/compiler'
+require 'legacy_dry/types/compiler'
 
 module LegacyDry
   class Struct
     # @private
-    class StructBuilder < Dry::Types::Compiler
+    class StructBuilder < LegacyDry::Types::Compiler
       attr_reader :struct
 
       def initialize(struct)
-        super(Dry::Types)
+        super(LegacyDry::Types)
         @struct = struct
       end
 
       # @param [Symbol|String] attr_name the name of the nested type
-      # @param [Dry::Struct,Dry::Types::Type::Array] type the superclass of the nested struct
+      # @param [LegacyDry::Struct,LegacyDry::Types::Type::Array] type the superclass of the nested struct
       # @yield the body of the nested struct
       def call(attr_name, type, &block)
         const_name = const_name(type, attr_name)
@@ -48,12 +48,12 @@ module LegacyDry
 
       def const_name(type, attr_name)
         snake_name = if array?(type)
-                       Dry::Core::Inflector.singularize(attr_name)
+                       LegacyDry::Core::Inflector.singularize(attr_name)
                      else
                        attr_name
                      end
 
-        Dry::Core::Inflector.camelize(snake_name)
+        LegacyDry::Core::Inflector.camelize(snake_name)
       end
 
       def check_name(name)

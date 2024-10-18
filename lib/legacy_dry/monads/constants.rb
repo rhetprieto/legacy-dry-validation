@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dry/core/constants'
+require 'legacy_dry/core/constants'
 
 module LegacyDry
   module Monads

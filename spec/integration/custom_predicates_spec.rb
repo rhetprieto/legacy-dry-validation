@@ -28,7 +28,7 @@ RSpec.describe LegacyDry::Validation do
     before do
       module Test
         module Predicates
-          include Dry::Logic::Predicates
+          include LegacyDry::Logic::Predicates
 
           def self.email?(input)
             input.include?('@') # for the lols
@@ -51,7 +51,7 @@ RSpec.describe LegacyDry::Validation do
       after do
         # HACK: reset global predicates configuration
         LegacyDry::Validation::Schema.configure do |config|
-          config.predicates = Dry::Logic::Predicates
+          config.predicates = LegacyDry::Logic::Predicates
         end
       end
 

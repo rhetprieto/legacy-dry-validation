@@ -1,4 +1,4 @@
-require 'dry/logic/operations/key'
+require 'legacy_dry/logic/operations/key'
 
 module LegacyDry
   module Logic

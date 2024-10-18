@@ -9,7 +9,7 @@ module LegacyDry
   #
   # @api public
   def self.Equalizer(*keys, **options)
-    Dry::Core::Equalizer.new(*keys, **options)
+    LegacyDry::Core::Equalizer.new(*keys, **options)
   end
 
   module Core

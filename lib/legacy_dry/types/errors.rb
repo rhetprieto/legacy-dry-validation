@@ -1,6 +1,6 @@
 module LegacyDry
   module Types
-    extend Dry::Core::ClassAttributes
+    extend LegacyDry::Core::ClassAttributes
 
     # @!attribute [r] namespace
     #   @return [Container{String => Definition}]

@@ -10,7 +10,7 @@ module LegacyDry
     # @example
     #
     #   class Base
-    #     extend Dry::Core::DescendantsTracker
+    #     extend LegacyDry::Core::DescendantsTracker
     #   end
     #
     #   class A < Base

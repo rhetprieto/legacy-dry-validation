@@ -2,7 +2,7 @@
 
 require 'json' unless defined?(::JSON::JSON_LOADED) && ::JSON::JSON_LOADED
 
-require 'dry/monads'
+require 'legacy_dry/monads'
 
 # Inspired by standard library implementation
 # for Time serialization/deserialization see (json/lib/json/add/time.rb)
@@ -10,7 +10,7 @@ require 'dry/monads'
 module LegacyDry
   module Monads
     class Maybe
-      # Deserializes JSON string by using Dry::Monads::Maybe#lift method
+      # Deserializes JSON string by using LegacyDry::Monads::Maybe#lift method
       def self.json_create(serialized)
         coerce(serialized.fetch('value'))
       end
@@ -24,7 +24,7 @@ module LegacyDry
         }
       end
 
-      # Stores class name (Dry::Monads::Maybe::Some or Dry::Monads::Maybe::None)
+      # Stores class name (LegacyDry::Monads::Maybe::Some or LegacyDry::Monads::Maybe::None)
       # with the monad value as JSON string
       def to_json(*args)
         as_json.to_json(*args)

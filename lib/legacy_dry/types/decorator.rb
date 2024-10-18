@@ -1,4 +1,4 @@
-require 'dry/types/options'
+require 'legacy_dry/types/options'
 
 module LegacyDry
   module Types

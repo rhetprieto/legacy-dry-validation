@@ -1,4 +1,4 @@
-require 'dry/logic/rule'
+require 'legacy_dry/logic/rule'
 
 module LegacyDry
   module Logic

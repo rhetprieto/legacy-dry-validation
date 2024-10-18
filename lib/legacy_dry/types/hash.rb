@@ -1,4 +1,4 @@
-require 'dry/types/hash/schema_builder'
+require 'legacy_dry/types/hash/schema_builder'
 
 module LegacyDry
   module Types
@@ -87,7 +87,7 @@ module LegacyDry
           raise ArgumentError, "a block or callable argument is required"
         end
 
-        handle = Dry::Types::FnContainer.register(fn)
+        handle = LegacyDry::Types::FnContainer.register(fn)
         meta(type_transform_fn: handle)
       end
 
@@ -96,7 +96,7 @@ module LegacyDry
       # @api private
       def transform_types(type_map)
         type_fn = meta.fetch(:type_transform_fn, Schema::NO_TRANSFORM)
-        type_transform = Dry::Types::FnContainer[type_fn]
+        type_transform = LegacyDry::Types::FnContainer[type_fn]
 
         type_map.each_with_object({}) { |(name, type), result|
           result[name] = type_transform.(

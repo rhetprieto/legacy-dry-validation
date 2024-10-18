@@ -1,7 +1,7 @@
 module LegacyDry
   module Types
     module Coercions
-      include Dry::Core::Constants
+      include LegacyDry::Core::Constants
 
       # @param [String, Object] input
       # @return [nil] if the input is an empty string

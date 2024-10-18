@@ -12,7 +12,7 @@ rescue LoadError
 end
 
 require 'legacy-dry-validation'
-require 'dry/core/constants'
+require 'legacy_dry/core/constants'
 require 'ostruct'
 
 SPEC_ROOT = Pathname(__dir__)
@@ -23,7 +23,7 @@ Dir[SPEC_ROOT.join('support/**/*.rb')].each(&method(:require))
 include LegacyDry::Validation
 
 module Types
-  include Dry::Types.module
+  include LegacyDry::Types.module
 end
 
 LegacyDry::Validation::Deprecations.configure do |config|

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
-require 'dry/monads/maybe'
-require 'dry/monads/task'
-require 'dry/monads/result'
-require 'dry/monads/try'
-require 'dry/monads/validated'
-require 'dry/monads/transformer'
-require 'dry/monads/curry'
+require 'legacy_dry/monads/maybe'
+require 'legacy_dry/monads/task'
+require 'legacy_dry/monads/result'
+require 'legacy_dry/monads/try'
+require 'legacy_dry/monads/validated'
+require 'legacy_dry/monads/transformer'
+require 'legacy_dry/monads/curry'
 
 module LegacyDry
   module Monads
@@ -83,9 +83,9 @@ module LegacyDry
         end
       end
 
-      extend Dry::Core::Deprecations[:'dry-monads']
+      extend LegacyDry::Core::Deprecations[:'dry-monads']
 
-      include Dry::Equalizer(:value, :type)
+      include LegacyDry::Equalizer(:value, :type)
       include Transformer
 
       # Internal array value
@@ -103,8 +103,8 @@ module LegacyDry
       # be treated as callable and used instead.
       #
       # @example
-      #   Dry::Monads::List[1, 2].bind { |x| [x + 1] } # => List[2, 3]
-      #   Dry::Monads::List[1, 2].bind(-> x { [x, x + 1] }) # => List[1, 2, 2, 3]
+      #   LegacyDry::Monads::List[1, 2].bind { |x| [x + 1] } # => List[2, 3]
+      #   LegacyDry::Monads::List[1, 2].bind(-> x { [x, x + 1] }) # => List[1, 2, 2, 3]
       #
       # @param args [Array<Object>] arguments will be passed to the block or proc
       # @return [List]
@@ -122,7 +122,7 @@ module LegacyDry
       # be treated as callable and used instead.
       #
       # @example
-      #   Dry::Monads::List[1, 2].fmap { |x| x + 1 } # => List[2, 3]
+      #   LegacyDry::Monads::List[1, 2].fmap { |x| x + 1 } # => List[2, 3]
       #
       # @param args [Array<Object>] arguments will be passed to the block or proc
       # @return [List]
@@ -150,7 +150,7 @@ module LegacyDry
       # Concatenates two lists.
       #
       # @example
-      #   Dry::Monads::List[1, 2] + Dry::Monads::List[3, 4] # => List[1, 2, 3, 4]
+      #   LegacyDry::Monads::List[1, 2] + LegacyDry::Monads::List[3, 4] # => List[1, 2, 3, 4]
       #
       # @param other [List] Other list
       # @return [List]
@@ -161,7 +161,7 @@ module LegacyDry
       # Returns a string representation of the list.
       #
       # @example
-      #   Dry::Monads::List[1, 2, 3].inspect # => "List[1, 2, 3]"
+      #   LegacyDry::Monads::List[1, 2, 3].inspect # => "List[1, 2, 3]"
       #
       # @return [String]
       def inspect
@@ -435,10 +435,10 @@ module LegacyDry
       #
       # @api public
       module Mixin
-        # @see Dry::Monads::List
+        # @see LegacyDry::Monads::List
         List = List
 
-        # @see Dry::Monads::List
+        # @see LegacyDry::Monads::List
         L = List
 
         # List constructor.
@@ -449,9 +449,9 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:list, List::Mixin)
   end
 end
 
-require 'dry/monads/traverse'
+require 'legacy_dry/monads/traverse'

@@ -8,7 +8,7 @@ module LegacyDry
     class NamespaceDSL < ::SimpleDelegator
       # DSL for defining namespaces
       #
-      # @param [Dry::Container::Mixin] container
+      # @param [LegacyDry::Container::Mixin] container
       #   The container
       # @param [String] namespace
       #   The namespace (name)

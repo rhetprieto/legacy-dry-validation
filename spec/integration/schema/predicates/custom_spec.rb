@@ -37,7 +37,7 @@ RSpec.describe 'Predicates: custom' do
         configure do
           config.messages_file = 'spec/fixtures/locales/en.yml'
           predicates (Module.new do
-            include Dry::Logic::Predicates
+            include LegacyDry::Logic::Predicates
 
             def self.email?(current)
               !current.match(/\@/).nil?

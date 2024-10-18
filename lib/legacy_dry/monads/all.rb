@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'dry/monads'
-require 'dry/monads/registry'
+require 'legacy_dry/monads'
+require 'legacy_dry/monads/registry'
 
 module LegacyDry
   module Monads

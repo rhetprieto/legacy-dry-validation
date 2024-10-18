@@ -1,7 +1,7 @@
 module LegacyDry
   module Types
     module Builder
-      include Dry::Core::Constants
+      include LegacyDry::Core::Constants
 
       # @return [Class]
       def constrained_type
@@ -69,8 +69,8 @@ module LegacyDry
   end
 end
 
-require 'dry/types/default'
-require 'dry/types/constrained'
-require 'dry/types/enum'
-require 'dry/types/safe'
-require 'dry/types/sum'
+require 'legacy_dry/types/default'
+require 'legacy_dry/types/constrained'
+require 'legacy_dry/types/enum'
+require 'legacy_dry/types/safe'
+require 'legacy_dry/types/sum'

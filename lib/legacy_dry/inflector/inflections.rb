@@ -28,7 +28,7 @@ module LegacyDry
 
       # Pluralization rules
       #
-      # @return [Dry::Inflector::Rules]
+      # @return [LegacyDry::Inflector::Rules]
       #
       # @since 0.1.0
       # @api private
@@ -36,7 +36,7 @@ module LegacyDry
 
       # Singularization rules
       #
-      # @return [Dry::Inflector::Rules]
+      # @return [LegacyDry::Inflector::Rules]
       #
       # @since 0.1.0
       # @api private
@@ -52,7 +52,7 @@ module LegacyDry
 
       # Human rules
       #
-      # @return [Dry::Inflector::Rules]
+      # @return [LegacyDry::Inflector::Rules]
       #
       # @since 0.1.0
       # @api private
@@ -60,7 +60,7 @@ module LegacyDry
 
       # Acronyms
       #
-      # @return [Dry::Inflector::Acronyms]
+      # @return [LegacyDry::Inflector::Acronyms]
       #
       # @since 0.1.2
       # @api private
@@ -68,7 +68,7 @@ module LegacyDry
 
       # Instantiate the rules
       #
-      # @return [Dry::Inflector::Inflections]
+      # @return [LegacyDry::Inflector::Inflections]
       # @yieldparam [self]
       #
       # @since 0.1.0
@@ -99,7 +99,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.plural "virus", "viruses"
       #   end
       def plural(rule, replacement)
@@ -122,7 +122,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.singular "thieves", "thief"
       #   end
       def singular(rule, replacement)
@@ -145,7 +145,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.singular "octopus", "octopi"
       #   end
       def irregular(singular, plural)
@@ -167,7 +167,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.uncountable "money"
       #     inflections.uncountable "money", "information"
       #     inflections.uncountable %w(money information rice)
@@ -188,7 +188,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.acronym "HTML"
       #   end
       #
@@ -217,7 +217,7 @@ module LegacyDry
       # @example
       #   require "legacy_dry/inflector"
       #
-      #   inflector = Dry::Inflector.new do |inflections|
+      #   inflector = LegacyDry::Inflector.new do |inflections|
       #     inflections.human(/_cnt$/i, '\1_count')
       #     inflections.human("legacy_col_person_name", "Name")
       #   end
@@ -245,7 +245,7 @@ module LegacyDry
       #
       # @param rule [String, Regexp] the rule
       # @param replacement [String, Regexp] the replacement
-      # @param target [Dry::Inflector::Rules] the target
+      # @param target [LegacyDry::Inflector::Rules] the target
       #
       # @since 0.1.0
       # @api private

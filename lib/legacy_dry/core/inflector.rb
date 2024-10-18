@@ -12,7 +12,7 @@ module LegacyDry
         ],
         dry_inflector: [
           "legacy_dry/inflector",
-          proc { Dry::Inflector.new }
+          proc { LegacyDry::Inflector.new }
         ],
         inflecto: [
           "inflecto",
@@ -63,7 +63,7 @@ module LegacyDry
       # Transform string to camel case
       #
       # @example
-      #   Dry::Core::Inflector.camelize('foo_bar') # => 'FooBar'
+      #   LegacyDry::Core::Inflector.camelize('foo_bar') # => 'FooBar'
       #
       # @param [String] input input string
       # @return Transformed string
@@ -74,7 +74,7 @@ module LegacyDry
       # Transform string to snake case
       #
       # @example
-      #   Dry::Core::Inflector.underscore('FooBar') # => 'foo_bar'
+      #   LegacyDry::Core::Inflector.underscore('FooBar') # => 'foo_bar'
       #
       # @param [String] input input string
       # @return Transformed string
@@ -85,7 +85,7 @@ module LegacyDry
       # Get a singlular form of a word
       #
       # @example
-      #   Dry::Core::Inflector.singularize('chars') # => 'char'
+      #   LegacyDry::Core::Inflector.singularize('chars') # => 'char'
       #
       # @param [String] input input string
       # @return Transformed string
@@ -96,7 +96,7 @@ module LegacyDry
       # Get a plural form of a word
       #
       # @example
-      #   Dry::Core::Inflector.pluralize('string') # => 'strings'
+      #   LegacyDry::Core::Inflector.pluralize('string') # => 'strings'
       #
       # @param [String] input input string
       # @return Transformed string
@@ -107,7 +107,7 @@ module LegacyDry
       # Remove namespaces from a constant name
       #
       # @example
-      #   Dry::Core::Inflector.demodulize('Deeply::Nested::Name') # => 'Name'
+      #   LegacyDry::Core::Inflector.demodulize('Deeply::Nested::Name') # => 'Name'
       #
       # @param [String] input input string
       # @return Unnested constant name
@@ -118,7 +118,7 @@ module LegacyDry
       # Get a constant value by its name
       #
       # @example
-      #   Dry::Core::Inflector.constantize('Foo::Bar') # => Foo::Bar
+      #   LegacyDry::Core::Inflector.constantize('Foo::Bar') # => Foo::Bar
       #
       # @param [String] input input constant name
       # @return Constant value
@@ -129,7 +129,7 @@ module LegacyDry
       # Transform a file path to a constant name
       #
       # @example
-      #   Dry::Core::Inflector.classify('foo/bar') # => 'Foo::Bar'
+      #   LegacyDry::Core::Inflector.classify('foo/bar') # => 'Foo::Bar'
       #
       # @param [String] input input string
       # @return Constant name

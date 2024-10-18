@@ -3,7 +3,7 @@ module LegacyDry
   #
   # @api public
   def self.Equalizer(*keys, **options)
-    Dry::Equalizer.new(*keys, **options)
+    LegacyDry::Equalizer.new(*keys, **options)
   end
 
   # Define equality, equivalence and inspection methods

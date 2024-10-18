@@ -1,13 +1,13 @@
-require 'dry/core/constants'
-require 'dry/equalizer'
-require 'dry/logic/operators'
+require 'legacy_dry/core/constants'
+require 'legacy_dry/equalizer'
+require 'legacy_dry/logic/operators'
 
 module LegacyDry
   module Logic
     module Operations
       class Abstract
         include Core::Constants
-        include Dry::Equalizer(:rules, :options)
+        include LegacyDry::Equalizer(:rules, :options)
         include Operators
 
         attr_reader :rules

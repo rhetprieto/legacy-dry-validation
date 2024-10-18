@@ -5,7 +5,7 @@ module LegacyDry
     class Schema
       module StructClassBuilder
         def create_class(target, other = nil)
-          if other.is_a?(Class) && other < Dry::Struct
+          if other.is_a?(Class) && other < LegacyDry::Struct
             super do
               other.schema.each { |attr, type| required(attr).filled(type) }
             end
@@ -17,7 +17,7 @@ module LegacyDry
 
       module StructNode
         def node(input, *)
-          if input.is_a?(::Class) && input < ::Dry::Struct
+          if input.is_a?(::Class) && input < ::LegacyDry::Struct
             [type, [name, [:schema, Schema.create_class(self, input)]]]
           else
             super

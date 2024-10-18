@@ -1,10 +1,10 @@
-require 'dry/core/extensions'
-require 'dry/core/constants'
+require 'legacy_dry/core/extensions'
+require 'legacy_dry/core/constants'
 
 module LegacyDry
   module Validation
-    extend Dry::Core::Extensions
-    include Dry::Core::Constants
+    extend LegacyDry::Core::Extensions
+    include LegacyDry::Core::Constants
 
     MissingMessageError = Class.new(StandardError)
     InvalidSchemaError = Class.new(StandardError)

@@ -6,11 +6,11 @@ module LegacyDry
     #
     # @example
     #
-    #   ns = Dry::Container::Namespace.new('name') do
+    #   ns = LegacyDry::Container::Namespace.new('name') do
     #     register('item', 'item')
     #   end
     #
-    #   container = Dry::Container.new
+    #   container = LegacyDry::Container.new
     #
     #   container.import(ns)
     #
@@ -31,7 +31,7 @@ module LegacyDry
       # @yield
       #   The block to evaluate when the namespace is imported
       #
-      # @return [Dry::Container::Namespace]
+      # @return [LegacyDry::Container::Namespace]
       #
       # @api public
       def initialize(name, &block)

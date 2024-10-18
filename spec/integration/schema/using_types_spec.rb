@@ -9,10 +9,10 @@ RSpec.describe LegacyDry::Validation::Schema, 'defining schema using legacy_dry 
   end
 
   before do
-    Email = Dry::Types['strict.string']
-    Age = Dry::Types['strict.integer'].constrained(gt: 18)
-    Country = Dry::Types['strict.string'].enum('Australia', 'Poland')
-    AdminBit = Dry::Types['strict.bool']
+    Email = LegacyDry::Types['strict.string']
+    Age = LegacyDry::Types['strict.integer'].constrained(gt: 18)
+    Country = LegacyDry::Types['strict.string'].enum('Australia', 'Poland')
+    AdminBit = LegacyDry::Types['strict.bool']
   end
 
   after do
@@ -53,7 +53,7 @@ RSpec.describe LegacyDry::Validation::Schema, 'defining schema using legacy_dry 
       LegacyDry::Validation.Schema do
         configure { config.input_processor = :sanitizer }
 
-        required(:email).filled(Dry::Types['strict.string'].constructor(&:strip))
+        required(:email).filled(LegacyDry::Types['strict.string'].constructor(&:strip))
       end
     end
 
@@ -68,9 +68,9 @@ RSpec.describe LegacyDry::Validation::Schema, 'defining schema using legacy_dry 
   context 'custom types' do
     subject(:schema) do
       LegacyDry::Validation.Params do
-        required(:quantity).filled(Dry::Types['strict.integer'].constrained(gt: 1))
-        required(:percentage).filled(Dry::Types['strict.decimal'].constrained(gt: 0, lt: 1))
-        required(:switch).filled(Dry::Types['strict.bool'])
+        required(:quantity).filled(LegacyDry::Types['strict.integer'].constrained(gt: 1))
+        required(:percentage).filled(LegacyDry::Types['strict.decimal'].constrained(gt: 0, lt: 1))
+        required(:switch).filled(LegacyDry::Types['strict.bool'])
       end
     end
 
@@ -86,7 +86,7 @@ RSpec.describe LegacyDry::Validation::Schema, 'defining schema using legacy_dry 
     subject(:schema) do
       LegacyDry::Validation.Schema do
         required(:address).schema do
-          zip = Dry::Types['strict.string'].constrained(format: /\A[0-9]{5}(-[0-9]{4})?\z/)
+          zip = LegacyDry::Types['strict.string'].constrained(format: /\A[0-9]{5}(-[0-9]{4})?\z/)
 
           required(:zip).filled(zip)
         end

@@ -1,13 +1,13 @@
 require 'yaml'
 require 'pathname'
 
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 require 'legacy_dry/validation/messages/abstract'
 
 module LegacyDry
   module Validation
     class Messages::YAML < Messages::Abstract
-      include Dry::Equalizer(:data)
+      include LegacyDry::Equalizer(:data)
 
       attr_reader :data
 

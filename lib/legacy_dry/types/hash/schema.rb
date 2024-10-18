@@ -1,4 +1,4 @@
-require 'dry/types/fn_container'
+require 'legacy_dry/types/fn_container'
 
 module LegacyDry
   module Types
@@ -9,11 +9,11 @@ module LegacyDry
       # Basic {Schema} evaluates default values for keys missing in input hash
       # (see {Schema#resolve_missing_value})
       #
-      # @see Dry::Types::Default#evaluate
-      # @see Dry::Types::Default::Callable#evaluate
+      # @see LegacyDry::Types::Default#evaluate
+      # @see LegacyDry::Types::Default::Callable#evaluate
       class Schema < Hash
-        NO_TRANSFORM = Dry::Types::FnContainer.register { |x| x }
-        SYMBOLIZE_KEY = Dry::Types::FnContainer.register(:to_sym.to_proc)
+        NO_TRANSFORM = LegacyDry::Types::FnContainer.register { |x| x }
+        SYMBOLIZE_KEY = LegacyDry::Types::FnContainer.register(:to_sym.to_proc)
 
         # @return [Hash{Symbol => Definition}]
         attr_reader :member_types
@@ -31,7 +31,7 @@ module LegacyDry
           meta = options[:meta] || EMPTY_HASH
           key_fn = meta.fetch(:key_transform_fn, NO_TRANSFORM)
 
-          @transform_key = Dry::Types::FnContainer[key_fn]
+          @transform_key = LegacyDry::Types::FnContainer[key_fn]
 
           super
         end
@@ -121,7 +121,7 @@ module LegacyDry
             raise ArgumentError, "a block or callable argument is required"
           end
 
-          handle = Dry::Types::FnContainer.register(fn)
+          handle = LegacyDry::Types::FnContainer.register(fn)
           meta(key_transform_fn: handle)
         end
 

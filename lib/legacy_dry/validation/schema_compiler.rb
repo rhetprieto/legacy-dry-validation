@@ -1,4 +1,4 @@
-require 'dry/logic/rule_compiler'
+require 'legacy_dry/logic/rule_compiler'
 
 module LegacyDry
   module Validation
@@ -34,7 +34,7 @@ module LegacyDry
       end
     end
 
-    class SchemaCompiler < Dry::Logic::RuleCompiler
+    class SchemaCompiler < LegacyDry::Logic::RuleCompiler
       attr_reader :schema, :options
 
       def initialize(*args, options)
@@ -54,7 +54,7 @@ module LegacyDry
 
       def visit_custom(node)
         id, predicate = node
-        Dry::Logic::Rule.new(predicate).with(id: id).bind(schema)
+        LegacyDry::Logic::Rule.new(predicate).with(id: id).bind(schema)
       end
 
       def visit_schema(klass)

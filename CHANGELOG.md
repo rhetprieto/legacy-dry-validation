@@ -316,7 +316,7 @@
 
 - ~15% performance boost via various optimizations (solnic)
 - When using explicit type specs building a schema is ~80-85x faster (solnic)
-- No longer uses `Dry::Types::Predicates` as `:type?` predicate was moved to dry-logic (solnic)
+- No longer uses `LegacyDry::Types::Predicates` as `:type?` predicate was moved to dry-logic (solnic)
 - Integration specs covering predicates with Form and Schema (jodosha)
 - Use latest ruby versions on travis (flash-gordon)
 - Make pry console optional with IRB as a default (flash-gordon)
@@ -342,7 +342,7 @@
 ### Added
 
 - Support for inferring rules from constrained type (coop + solnic)
-- Support for inferring nested schemas from `Dry::Types::Struct` classes (coop)
+- Support for inferring nested schemas from `LegacyDry::Types::Struct` classes (coop)
 - Support for `number?` predicate (solnic)
 
 ### Fixed

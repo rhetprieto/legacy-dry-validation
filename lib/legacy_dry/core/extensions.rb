@@ -9,7 +9,7 @@ module LegacyDry
     # @example
     #
     #   class Foo
-    #     extend Dry::Core::Extensions
+    #     extend LegacyDry::Core::Extensions
     #
     #     register_extension(:bar) do
     #        def bar; :bar end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dry/monads/do'
+require 'legacy_dry/monads/do'
 
 module LegacyDry
   module Monads
@@ -11,12 +11,12 @@ module LegacyDry
       #
       # @example annotated example
       #
-      #   require 'dry/monads/do/all'
-      #   require 'dry/monads/result'
+      #   require 'legacy_dry/monads/do/all'
+      #   require 'legacy_dry/monads/result'
       #
       #   class CreateUser
-      #     include Dry::Monads::Do::All
-      #     include Dry::Monads::Result::Mixin
+      #     include LegacyDry::Monads::Do::All
+      #     include LegacyDry::Monads::Result::Mixin
       #
       #     def call(params)
       #       # Unwrap a monadic value using an implicitly passed block
@@ -134,7 +134,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:do, Do::All)
   end
 end

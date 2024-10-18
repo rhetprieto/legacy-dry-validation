@@ -1,5 +1,5 @@
-require 'dry/types/hash/schema'
-require 'dry/types/fn_container'
+require 'legacy_dry/types/hash/schema'
+require 'legacy_dry/types/fn_container'
 
 module LegacyDry
   module Types

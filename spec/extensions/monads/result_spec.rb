@@ -10,7 +10,7 @@ RSpec.describe LegacyDry::Validation::Result do
       it 'returns a Success value' do
         monad = result.to_monad
 
-        expect(monad).to be_a Dry::Monads::Result
+        expect(monad).to be_a LegacyDry::Monads::Result
         expect(monad).to be_a_success
         expect(monad.value!).to eql(name: 'Jane')
       end
@@ -31,7 +31,7 @@ RSpec.describe LegacyDry::Validation::Result do
       it 'returns full messages' do
         monad = result.to_monad(full: true)
 
-        expect(monad).to be_a Dry::Monads::Result
+        expect(monad).to be_a LegacyDry::Monads::Result
         expect(monad).to be_a_failure
         expect(monad.failure).to eql(name: ['name must be filled', 'name length must be within 2 - 4'])
       end

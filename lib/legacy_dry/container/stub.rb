@@ -48,7 +48,7 @@ module LegacyDry
     module Mixin
       # Enable stubbing functionality into the current container
       def enable_stubs!
-        extend ::Dry::Container::Stub
+        extend ::LegacyDry::Container::Stub
       end
     end
   end

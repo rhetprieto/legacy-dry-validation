@@ -1,5 +1,5 @@
-require 'dry/logic/operations/abstract'
-require 'dry/logic/result'
+require 'legacy_dry/logic/operations/abstract'
+require 'legacy_dry/logic/result'
 
 module LegacyDry
   module Logic

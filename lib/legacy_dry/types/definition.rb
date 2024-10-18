@@ -1,6 +1,6 @@
-require 'dry/types/builder'
-require 'dry/types/result'
-require 'dry/types/options'
+require 'legacy_dry/types/builder'
+require 'legacy_dry/types/result'
+require 'legacy_dry/types/options'
 
 module LegacyDry
   module Types
@@ -8,7 +8,7 @@ module LegacyDry
       include Type
       include Options
       include Builder
-      include Dry::Equalizer(:primitive, :options, :meta)
+      include LegacyDry::Equalizer(:primitive, :options, :meta)
 
       # @return [Class]
       attr_reader :primitive
@@ -75,7 +75,7 @@ module LegacyDry
         end
       end
 
-      # @param (see Dry::Types::Success#initialize)
+      # @param (see LegacyDry::Types::Success#initialize)
       # @return [Result::Success]
       def success(input)
         Result::Success.new(input)
@@ -108,6 +108,6 @@ module LegacyDry
   end
 end
 
-require 'dry/types/array'
-require 'dry/types/hash'
-require 'dry/types/map'
+require 'legacy_dry/types/array'
+require 'legacy_dry/types/hash'
+require 'legacy_dry/types/map'

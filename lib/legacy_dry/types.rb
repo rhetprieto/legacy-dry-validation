@@ -6,25 +6,25 @@ require 'concurrent'
 
 require 'dry-container'
 require 'dry-equalizer'
-require 'dry/core/extensions'
-require 'dry/core/constants'
-require 'dry/core/class_attributes'
+require 'legacy_dry/core/extensions'
+require 'legacy_dry/core/constants'
+require 'legacy_dry/core/class_attributes'
 
-require 'dry/types/version'
-require 'dry/types/container'
-require 'dry/types/inflector'
-require 'dry/types/type'
-require 'dry/types/definition'
-require 'dry/types/constructor'
-require 'dry/types/builder_methods'
+require 'legacy_dry/types/version'
+require 'legacy_dry/types/container'
+require 'legacy_dry/types/inflector'
+require 'legacy_dry/types/type'
+require 'legacy_dry/types/definition'
+require 'legacy_dry/types/constructor'
+require 'legacy_dry/types/builder_methods'
 
-require 'dry/types/errors'
+require 'legacy_dry/types/errors'
 
 module LegacyDry
   module Types
-    extend Dry::Core::Extensions
-    extend Dry::Core::ClassAttributes
-    include Dry::Core::Constants
+    extend LegacyDry::Core::Extensions
+    extend LegacyDry::Core::ClassAttributes
+    include LegacyDry::Core::Constants
 
     # @!attribute [r] namespace
     #   @return [Container{String => Definition}]
@@ -42,10 +42,10 @@ module LegacyDry
       namespace
     end
 
-    # @deprecated Include {Dry::Types.module} instead
+    # @deprecated Include {LegacyDry::Types.module} instead
     def self.finalize
-      warn 'Dry::Types.finalize and configuring namespace is deprecated. Just'\
-       ' do `include Dry::Types.module` in places where you want to have access'\
+      warn 'LegacyDry::Types.finalize and configuring namespace is deprecated. Just'\
+       ' do `include LegacyDry::Types.module` in places where you want to have access'\
        ' to built-in types'
 
       define_constants(self.namespace, type_keys)
@@ -125,7 +125,7 @@ module LegacyDry
       @type_map ||= Concurrent::Map.new
     end
 
-    # List of type keys defined in {Dry::Types.container}
+    # List of type keys defined in {LegacyDry::Types.container}
     # @return [<String>]
     def self.type_keys
       container.keys
@@ -140,8 +140,8 @@ module LegacyDry
       if type_keys.any? { |key| key.split('.')[0] == underscored }
         raise NameError,
               'dry-types does not define constants for default types. '\
-              'You can access the predefined types with [], e.g. Dry::Types["strict.integer"] '\
-              'or generate a module with types using Dry::Types.module'
+              'You can access the predefined types with [], e.g. LegacyDry::Types["strict.integer"] '\
+              'or generate a module with types using LegacyDry::Types.module'
       else
         super
       end
@@ -149,5 +149,5 @@ module LegacyDry
   end
 end
 
-require 'dry/types/core' # load built-in types
-require 'dry/types/extensions'
+require 'legacy_dry/types/core' # load built-in types
+require 'legacy_dry/types/extensions'

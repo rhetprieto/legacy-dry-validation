@@ -1,10 +1,10 @@
-require 'dry/types/array/member'
-require 'dry/core/deprecations'
+require 'legacy_dry/types/array/member'
+require 'legacy_dry/core/deprecations'
 
 module LegacyDry
   module Types
     class Array < Definition
-      extend Dry::Core::Deprecations[:'dry-types']
+      extend LegacyDry::Core::Deprecations[:'dry-types']
 
       # @param [Type] type
       # @return [Array::Member]

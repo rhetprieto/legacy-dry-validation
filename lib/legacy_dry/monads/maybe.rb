@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'dry/equalizer'
-require 'dry/core/deprecations'
+require 'legacy_dry/equalizer'
+require 'legacy_dry/core/deprecations'
 
-require 'dry/monads/right_biased'
-require 'dry/monads/transformer'
-require 'dry/monads/unit'
-require 'dry/monads/constants'
+require 'legacy_dry/monads/right_biased'
+require 'legacy_dry/monads/transformer'
+require 'legacy_dry/monads/unit'
+require 'legacy_dry/monads/constants'
 
 module LegacyDry
   module Monads
@@ -87,13 +87,13 @@ module LegacyDry
       #
       # @api public
       class Some < Maybe
-        include Dry::Equalizer(:value!)
+        include LegacyDry::Equalizer(:value!)
         include RightBiased::Right
 
         # Shortcut for Some([...])
         #
         #  @example
-        #    include Dry::Monads[:maybe]
+        #    include LegacyDry::Monads[:maybe]
         #
         #    def call
         #      Some[200, {}, ['ok']] # => Some([200, {}, ['ok']])
@@ -115,7 +115,7 @@ module LegacyDry
         # chaining of calls.
         #
         # @example
-        #   Dry::Monads.Some(4).fmap(&:succ).fmap(->(n) { n**2 }) # => Some(25)
+        #   LegacyDry::Monads.Some(4).fmap(&:succ).fmap(->(n) { n**2 }) # => Some(25)
         #
         # @param args [Array<Object>] arguments will be transparently passed through to #bind
         # @return [Maybe::Some, Maybe::None] Wrapped result, i.e. nil will be mapped to None,
@@ -172,8 +172,8 @@ module LegacyDry
         # otherwise simply returns the parameter val.
         #
         # @example
-        #   Dry::Monads.None.or('no value') # => "no value"
-        #   Dry::Monads.None.or { Time.now } # => current time
+        #   LegacyDry::Monads.None.or('no value') # => "no value"
+        #   LegacyDry::Monads.None.or { Time.now } # => current time
         #
         # @param args [Array<Object>] if no block given the first argument will be returned
         #                             otherwise arguments will be transparently passed to the block
@@ -190,8 +190,8 @@ module LegacyDry
         # to the block result.
         #
         # @example
-        #   Dry::Monads.None.or_fmap('no value') # => Some("no value")
-        #   Dry::Monads.None.or_fmap { Time.now } # => Some(current time)
+        #   LegacyDry::Monads.None.or_fmap('no value') # => Some("no value")
+        #   LegacyDry::Monads.None.or_fmap { Time.now } # => Some(current time)
         #
         # @param args [Array<Object>] arguments will be passed to the underlying `#or` call
         # @return [Maybe::Some, Maybe::None] Lifted `#or` result, i.e. nil will be mapped to None,
@@ -234,7 +234,7 @@ module LegacyDry
 
       # A module that can be included for easier access to Maybe monads.
       module Mixin
-        # @see Dry::Monads::Maybe
+        # @see LegacyDry::Monads::Maybe
         Maybe = Maybe
         # @see Maybe::Some
         Some = Some
@@ -328,7 +328,7 @@ module LegacyDry
         # @return [Maybe::Some]
         def to_maybe
           Kernel.warn 'Success(nil) transformed to None' if @value.nil?
-          Dry::Monads::Maybe(@value)
+          LegacyDry::Monads::Maybe(@value)
         end
       end
 
@@ -357,7 +357,7 @@ module LegacyDry
       class Value < Try
         # @return [Maybe]
         def to_maybe
-          Dry::Monads::Maybe(@value)
+          LegacyDry::Monads::Maybe(@value)
         end
       end
 
@@ -389,7 +389,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:maybe, Maybe::Mixin)
   end
 end

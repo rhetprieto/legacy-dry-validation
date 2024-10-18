@@ -7,10 +7,10 @@ module LegacyDry
     # Allows you to cache call results that are solely determined by arguments.
     #
     # @example
-    #   require 'dry/core/cache'
+    #   require 'legacy_dry/core/cache'
     #
     #   class Foo
-    #     extend Dry::Core::Cache
+    #     extend LegacyDry::Core::Cache
     #
     #     def heavy_computation(arg1, arg2)
     #       fetch_or_store(arg1, arg2) { arg1 ^ arg2 }

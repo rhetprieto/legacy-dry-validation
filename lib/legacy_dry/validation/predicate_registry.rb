@@ -1,4 +1,4 @@
-require 'dry/logic/rule/predicate'
+require 'legacy_dry/logic/rule/predicate'
 
 module LegacyDry
   module Validation

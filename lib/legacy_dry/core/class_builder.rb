@@ -19,13 +19,13 @@ module LegacyDry
       # Generate a class based on options
       #
       # @example Create anonymous class
-      #   builder = Dry::Core::ClassBuilder.new(name: 'MyClass')
+      #   builder = LegacyDry::Core::ClassBuilder.new(name: 'MyClass')
       #
       #   klass = builder.call
       #   klass.name # => "MyClass"
       #
       # @example Create named class
-      #   builder = Dry::Core::ClassBuilder.new(name: 'User', namespace: Entities)
+      #   builder = LegacyDry::Core::ClassBuilder.new(name: 'User', namespace: Entities)
       #
       #   klass = builder.call
       #   klass.name # => "Entities::User"

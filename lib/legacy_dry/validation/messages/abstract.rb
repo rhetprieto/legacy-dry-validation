@@ -1,7 +1,7 @@
 require 'pathname'
 require 'concurrent/map'
 
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 require 'dry/configurable'
 
 require 'legacy_dry/validation/template'
@@ -11,7 +11,7 @@ module LegacyDry
     module Messages
       class Abstract
         extend Dry::Configurable
-        include Dry::Equalizer(:config)
+        include LegacyDry::Equalizer(:config)
 
         DEFAULT_PATH = Pathname(__dir__).join('../../../../config/errors.yml').realpath.freeze
 

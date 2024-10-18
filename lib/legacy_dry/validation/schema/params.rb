@@ -1,5 +1,5 @@
 require 'legacy_dry/validation/schema'
-require 'dry/types/params'
+require 'legacy_dry/types/params'
 
 module LegacyDry
   module Validation

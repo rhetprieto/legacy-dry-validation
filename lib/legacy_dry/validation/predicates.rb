@@ -1,9 +1,9 @@
-require 'dry/logic/predicates'
+require 'legacy_dry/logic/predicates'
 
 module LegacyDry
   module Validation
     module Predicates
-      include Dry::Logic::Predicates
+      include LegacyDry::Logic::Predicates
 
       class << self
         undef :nil?

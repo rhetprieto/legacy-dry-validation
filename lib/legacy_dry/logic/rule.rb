@@ -1,9 +1,9 @@
 require 'concurrent/map'
-require 'dry/core/constants'
-require 'dry/equalizer'
-require 'dry/logic/operations'
-require 'dry/logic/result'
-require 'dry/logic/rule/interface'
+require 'legacy_dry/core/constants'
+require 'legacy_dry/equalizer'
+require 'legacy_dry/logic/operations'
+require 'legacy_dry/logic/result'
+require 'legacy_dry/logic/rule/interface'
 
 module LegacyDry
   module Logic
@@ -17,7 +17,7 @@ module LegacyDry
 
     class Rule
       include Core::Constants
-      include Dry::Equalizer(:predicate, :options)
+      include LegacyDry::Equalizer(:predicate, :options)
       include Operators
 
       attr_reader :predicate

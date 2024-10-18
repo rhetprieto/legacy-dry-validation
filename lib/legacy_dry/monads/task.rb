@@ -2,9 +2,9 @@
 
 require 'concurrent/promise'
 
-require 'dry/monads/unit'
-require 'dry/monads/curry'
-require 'dry/monads/conversion_stubs'
+require 'legacy_dry/monads/unit'
+require 'legacy_dry/monads/curry'
+require 'legacy_dry/monads/conversion_stubs'
 
 module LegacyDry
   module Monads
@@ -278,7 +278,7 @@ module LegacyDry
         # @private
         Task = Task
 
-        # @see Dry::Monads::Unit
+        # @see LegacyDry::Monads::Unit
         Unit = Unit # @private
 
         # Created a mixin with the given executor injected.
@@ -314,7 +314,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:task, Task::Mixin)
   end
 end

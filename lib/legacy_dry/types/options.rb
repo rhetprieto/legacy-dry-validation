@@ -34,7 +34,7 @@ module LegacyDry
       end
 
       # Resets meta
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       def pristine
         with(meta: EMPTY_HASH)
       end

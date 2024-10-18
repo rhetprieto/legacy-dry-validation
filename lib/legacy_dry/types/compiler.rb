@@ -23,7 +23,7 @@ module LegacyDry
 
       def visit_constructor(node)
         definition, fn_register_name, meta = node
-        fn = Dry::Types::FnContainer[fn_register_name]
+        fn = LegacyDry::Types::FnContainer[fn_register_name]
         primitive = visit(definition)
         Types::Constructor.new(primitive, meta: meta, fn: fn)
       end
@@ -44,7 +44,7 @@ module LegacyDry
       end
 
       def visit_rule(node)
-        Dry::Types.rule_compiler.([node])[0]
+        LegacyDry::Types.rule_compiler.([node])[0]
       end
 
       def visit_sum(node)

@@ -2,7 +2,7 @@
 
 require 'concurrent/promise'
 
-require 'dry/monads/task'
+require 'legacy_dry/monads/task'
 
 module LegacyDry
   module Monads
@@ -59,10 +59,10 @@ module LegacyDry
       # Lazy constructors
       #
       module Mixin
-        # @see Dry::Monads::Lazy
+        # @see LegacyDry::Monads::Lazy
         Lazy = Lazy
 
-        # @see Dry::Monads::Unit
+        # @see LegacyDry::Monads::Unit
         Unit = Unit
 
         # Lazy constructors
@@ -80,7 +80,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:lazy, Lazy::Mixin)
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "concurrent/hash"
+require "legacy_dry/container"
+
 
 module LegacyDry
   class Container
@@ -15,7 +17,7 @@ module LegacyDry
     # @example
     #
     #   class MyClass
-    #     extend Dry::Container::Mixin
+    #     extend LegacyDry::Container::Mixin
     #   end
     #
     #   MyClass.register(:item, 'item')
@@ -23,7 +25,7 @@ module LegacyDry
     #   => 'item'
     #
     #   class MyObject
-    #     include Dry::Container::Mixin
+    #     include LegacyDry::Container::Mixin
     #   end
     #
     #   container = MyObject.new
@@ -47,9 +49,9 @@ module LegacyDry
           extend ::Dry::Configurable
           extend hooks_mod
 
-          setting :registry, ::Dry::Container::Registry.new
-          setting :resolver, ::Dry::Container::Resolver.new
-          setting :namespace_separator, "."
+          setting :registry, default: ::LegacyDry::Container::Registry.new
+          setting :resolver, default: ::LegacyDry::Container::Resolver.new
+          setting :namespace_separator, default: "."
 
           @_container = ::Concurrent::Hash.new
         end
@@ -69,8 +71,8 @@ module LegacyDry
           extend ::Dry::Configurable
           prepend Initializer
 
-          setting :registry, ::Dry::Container::Registry.new
-          setting :resolver, ::Dry::Container::Resolver.new
+          setting :registry, default: ::LegacyDry::Container::Registry.new
+          setting :resolver, default: ::LegacyDry::Container::Resolver.new
           setting :namespace_separator, "."
 
           def config
@@ -91,7 +93,7 @@ module LegacyDry
       #   If a block is given, contents will be ignored and the block
       #   will be registered instead
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def register(key, contents = nil, options = EMPTY_HASH, &block)
@@ -130,19 +132,19 @@ module LegacyDry
       # @return [Mixed]
       #
       # @api public
-      # @see Dry::Container::Mixin#resolve
+      # @see LegacyDry::Container::Mixin#resolve
       def [](key)
         resolve(key)
       end
 
       # Merge in the items of the other container
       #
-      # @param [Dry::Container] other
+      # @param [LegacyDry::Container] other
       #   The other container to merge in
       # @param [Symbol, nil] namespace
       #   Namespace to prefix other container items with, defaults to nil
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def merge(other, namespace: nil)
@@ -184,7 +186,7 @@ module LegacyDry
       #
       # If no block is given, an enumerator is returned instead.
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def each_key(&block)
@@ -209,7 +211,7 @@ module LegacyDry
 
       # Decorates an item from the container with specified decorator
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def decorate(key, with: nil, &block)
@@ -235,11 +237,11 @@ module LegacyDry
       # @param [Mixed] namespace
       #   The namespace to register items in
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def namespace(namespace, &block)
-        ::Dry::Container::NamespaceDSL.new(
+        ::LegacyDry::Container::NamespaceDSL.new(
           self,
           namespace,
           config.namespace_separator,
@@ -251,10 +253,10 @@ module LegacyDry
 
       # Import a namespace
       #
-      # @param [Dry::Container::Namespace] namespace
+      # @param [LegacyDry::Container::Namespace] namespace
       #   The namespace to import
       #
-      # @return [Dry::Container::Mixin] self
+      # @return [LegacyDry::Container::Mixin] self
       #
       # @api public
       def import(namespace)

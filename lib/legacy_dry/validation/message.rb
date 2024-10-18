@@ -1,9 +1,9 @@
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
 module LegacyDry
   module Validation
     class Message
-      include Dry::Equalizer(:predicate, :path, :text, :options)
+      include LegacyDry::Equalizer(:predicate, :path, :text, :options)
 
       attr_reader :predicate, :path, :text, :rule, :args, :options
 

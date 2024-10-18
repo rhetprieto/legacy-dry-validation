@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'dry/core/deprecations'
+require 'legacy_dry/core/deprecations'
 
-Dry::Core::Deprecations.warn('Either monad was renamed to Result', tag: :'dry-monads')
+LegacyDry::Core::Deprecations.warn('Either monad was renamed to Result', tag: :'dry-monads')
 
-require 'dry/monads/result'
+require 'legacy_dry/monads/result'
 
 module LegacyDry
   module Monads
@@ -12,7 +12,7 @@ module LegacyDry
     deprecate_constant :Either
 
     class Result
-      extend Dry::Core::Deprecations[:'dry-monads']
+      extend LegacyDry::Core::Deprecations[:'dry-monads']
 
       deprecate :to_either, :to_result
 
@@ -24,7 +24,7 @@ module LegacyDry
 
       module Mixin
         module Constructors
-          extend Dry::Core::Deprecations[:'dry-monads']
+          extend LegacyDry::Core::Deprecations[:'dry-monads']
 
           Right = Success
           Left = Failure
@@ -51,13 +51,13 @@ module LegacyDry
 
     class Try
       class Value
-        extend Dry::Core::Deprecations[:'dry-monads']
+        extend LegacyDry::Core::Deprecations[:'dry-monads']
 
         deprecate :to_either, :to_result
       end
 
       class Error
-        extend Dry::Core::Deprecations[:'dry-monads']
+        extend LegacyDry::Core::Deprecations[:'dry-monads']
 
         deprecate :to_either, :to_result
       end

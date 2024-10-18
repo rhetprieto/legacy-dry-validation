@@ -1,10 +1,10 @@
-require 'dry/types/decorator'
+require 'legacy_dry/types/decorator'
 
 module LegacyDry
   module Types
     class Enum
       include Type
-      include Dry::Equalizer(:type, :options, :mapping)
+      include LegacyDry::Equalizer(:type, :options, :mapping)
       include Decorator
 
       # @return [Array]

@@ -1,14 +1,14 @@
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
 module LegacyDry
   module Logic
     class Evaluator
-      include Dry::Equalizer(:path)
+      include LegacyDry::Equalizer(:path)
 
       attr_reader :path
 
       class Set
-        include Dry::Equalizer(:evaluators)
+        include LegacyDry::Equalizer(:evaluators)
 
         attr_reader :evaluators
 

@@ -1,15 +1,15 @@
-require 'dry/types/decorator'
+require 'legacy_dry/types/decorator'
 
 module LegacyDry
   module Types
     class Default
       include Type
-      include Dry::Equalizer(:type, :options, :value)
+      include LegacyDry::Equalizer(:type, :options, :value)
       include Decorator
       include Builder
 
       class Callable < Default
-        include Dry::Equalizer(:type, :options)
+        include LegacyDry::Equalizer(:type, :options)
 
         # Evaluates given callable
         # @return [Object]
@@ -40,7 +40,7 @@ module LegacyDry
         @value = value
       end
 
-      # @param [Array] args see {Dry::Types::Builder#constrained}
+      # @param [Array] args see {LegacyDry::Types::Builder#constrained}
       # @return [Default]
       def constrained(*args)
         type.constrained(*args).default(value)

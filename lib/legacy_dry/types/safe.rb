@@ -1,10 +1,10 @@
-require 'dry/types/decorator'
+require 'legacy_dry/types/decorator'
 
 module LegacyDry
   module Types
     class Safe
       include Type
-      include Dry::Equalizer(:type)
+      include LegacyDry::Equalizer(:type)
       include Decorator
       include Builder
       private :options, :meta
@@ -49,7 +49,7 @@ module LegacyDry
 
       private
 
-      # @param [Object, Dry::Types::Constructor] response
+      # @param [Object, LegacyDry::Types::Constructor] response
       # @return [Boolean]
       def decorate?(response)
         super || response.kind_of?(Constructor)

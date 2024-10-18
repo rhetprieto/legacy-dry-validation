@@ -1,9 +1,9 @@
-require 'dry/types/fn_container'
+require 'legacy_dry/types/fn_container'
 
 module LegacyDry
   module Types
     class Constructor < Definition
-      include Dry::Equalizer(:type, :options, :meta)
+      include LegacyDry::Equalizer(:type, :options, :meta)
 
       # @return [#call]
       attr_reader :fn
@@ -103,7 +103,7 @@ module LegacyDry
       private
 
       def register_fn(fn)
-        Dry::Types::FnContainer.register(fn)
+        LegacyDry::Types::FnContainer.register(fn)
       end
 
       # @param [Symbol] meth

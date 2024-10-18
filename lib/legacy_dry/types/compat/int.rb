@@ -1,6 +1,6 @@
-require 'dry/core/deprecations'
+require 'legacy_dry/core/deprecations'
 
-Dry::Core::Deprecations.warn('Int type was renamed to Integer', tag: :'dry-types')
+LegacyDry::Core::Deprecations.warn('Int type was renamed to Integer', tag: :'dry-types')
 
 module LegacyDry
   module Types

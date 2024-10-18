@@ -1,9 +1,9 @@
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
 module LegacyDry
   module Validation
     class Result
-      include Dry::Equalizer(:output, :errors)
+      include LegacyDry::Equalizer(:output, :errors)
       include Enumerable
 
       attr_reader :output

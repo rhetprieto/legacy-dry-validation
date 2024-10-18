@@ -9,12 +9,12 @@ This extension allows schema to use `dry-struct`
 ``` ruby
 LegacyDry::Validation.load_extensions(:struct)
 
-class Name < Dry::Struct::Value
-  attribute :given_name, Dry::Types['strict.string']
-  attribute :family_name, Dry::Types['strict.string']
+class Name < LegacyDry::Struct::Value
+  attribute :given_name, LegacyDry::Types['strict.string']
+  attribute :family_name, LegacyDry::Types['strict.string']
 end
 
-class Person < Dry::Struct::Value
+class Person < LegacyDry::Struct::Value
   attribute :name, Name
 end
 

@@ -1,15 +1,15 @@
-require 'dry/types/sum'
+require 'legacy_dry/types/sum'
 
 module LegacyDry
   class Struct
     # A sum type of two or more structs
-    # As opposed to Dry::Types::Sum::Constrained
+    # As opposed to LegacyDry::Types::Sum::Constrained
     # this type tries no to coerce data first.
-    class Sum < Dry::Types::Sum::Constrained
-      # @param [Hash{Symbol => Object},Dry::Struct] input
-      # @yieldparam [Dry::Types::Result::Failure] failure
-      # @yieldreturn [Dry::Types::ResultResult]
-      # @return [Dry::Types::Result]
+    class Sum < LegacyDry::Types::Sum::Constrained
+      # @param [Hash{Symbol => Object},LegacyDry::Struct] input
+      # @yieldparam [LegacyDry::Types::Result::Failure] failure
+      # @yieldreturn [LegacyDry::Types::ResultResult]
+      # @return [LegacyDry::Types::Result]
       def try(input)
         if input.is_a?(Struct)
           try_struct(input) { super }
@@ -19,8 +19,8 @@ module LegacyDry
       end
 
       # Build a new sum type
-      # @param [Dry::Types::Type] type
-      # @return [Dry::Types::Sum]
+      # @param [LegacyDry::Types::Type] type
+      # @return [LegacyDry::Types::Sum]
       def |(type)
         if type.is_a?(Class) && type <= Struct || type.is_a?(Sum)
           self.class.new(self, type)

@@ -1,6 +1,6 @@
-require 'dry/logic/operations/unary'
-require 'dry/logic/evaluator'
-require 'dry/logic/result'
+require 'legacy_dry/logic/operations/unary'
+require 'legacy_dry/logic/evaluator'
+require 'legacy_dry/logic/result'
 
 module LegacyDry
   module Logic

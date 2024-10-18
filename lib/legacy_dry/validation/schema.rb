@@ -1,5 +1,5 @@
-require 'dry/logic/predicates'
-require 'dry/types/constraints'
+require 'legacy_dry/logic/predicates'
+require 'legacy_dry/types/constraints'
 
 require 'legacy_dry/validation/predicate_registry'
 require 'legacy_dry/validation/schema_compiler'

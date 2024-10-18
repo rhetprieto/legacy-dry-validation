@@ -1,4 +1,4 @@
-require 'dry/core/constants'
+require 'legacy_dry/core/constants'
 
 module LegacyDry
   module Logic

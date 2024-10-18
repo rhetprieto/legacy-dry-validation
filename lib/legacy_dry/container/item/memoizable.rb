@@ -18,9 +18,9 @@ module LegacyDry
         # @param [Mixed] item
         # @param [Hash] options
         #
-        # @raise [Dry::Container::Error]
+        # @raise [LegacyDry::Container::Error]
         #
-        # @return [Dry::Container::Item::Base]
+        # @return [LegacyDry::Container::Item::Base]
         def initialize(item, options = {})
           super
           raise_not_supported_error unless callable?
@@ -30,7 +30,7 @@ module LegacyDry
 
         # Returns the result of item call using a syncronized mutex
         #
-        # @return [Dry::Container::Item::Base]
+        # @return [LegacyDry::Container::Item::Base]
         def call
           memoize_mutex.synchronize do
             @memoized_item ||= item.call
@@ -41,7 +41,7 @@ module LegacyDry
 
         # @private
         def raise_not_supported_error
-          raise ::Dry::Container::Error, "Memoize only supported for a block or a proc".freeze
+          raise ::LegacyDry::Container::Error, "Memoize only supported for a block or a proc".freeze
         end
       end
     end

@@ -1,22 +1,22 @@
 require 'dry-types'
 require 'dry-equalizer'
-require 'dry/core/extensions'
-require 'dry/core/constants'
+require 'legacy_dry/core/extensions'
+require 'legacy_dry/core/constants'
 
-require 'dry/struct/version'
-require 'dry/struct/errors'
-require 'dry/struct/class_interface'
-require 'dry/struct/hashify'
-require 'dry/struct/struct_builder'
+require 'legacy_dry/struct/version'
+require 'legacy_dry/struct/errors'
+require 'legacy_dry/struct/class_interface'
+require 'legacy_dry/struct/hashify'
+require 'legacy_dry/struct/struct_builder'
 
 module LegacyDry
-  # Constructor method for easily creating a {Dry::Struct}.
-  # @return [Dry::Struct]
+  # Constructor method for easily creating a {LegacyDry::Struct}.
+  # @return [LegacyDry::Struct]
   # @example
   #   require 'dry-struct'
   #
   #   module Types
-  #     include Dry::Types.module
+  #     include LegacyDry::Types.module
   #   end
   #
   #   Person = Dry.Struct(name: Types::Strict::String, age: Types::Strict::Int)
@@ -26,9 +26,9 @@ module LegacyDry
   #
   #   Test = Dry.Struct(expected: Types::Strict::String) { input(input.strict) }
   #   Test[expected: "foo", unexpected: "bar"]
-  #   #=> Dry::Struct::Error: [Test.new] unexpected keys [:unexpected] in Hash input
-  def self.Struct(attributes = Dry::Core::Constants::EMPTY_HASH, &block)
-    Class.new(Dry::Struct) do
+  #   #=> LegacyDry::Struct::Error: [Test.new] unexpected keys [:unexpected] in Hash input
+  def self.Struct(attributes = LegacyDry::Core::Constants::EMPTY_HASH, &block)
+    Class.new(LegacyDry::Struct) do
       attributes.each { |a, type| attribute a, type }
       instance_eval(&block) if block
     end
@@ -60,10 +60,10 @@ module LegacyDry
   #   require 'dry-struct'
   #
   #   module Types
-  #     include Dry::Types.module
+  #     include LegacyDry::Types.module
   #   end
   #
-  #   class Book < Dry::Struct
+  #   class Book < LegacyDry::Struct
   #     attribute :title, Types::Strict::String
   #     attribute :subtitle, Types::Strict::String.optional
   #   end
@@ -82,14 +82,14 @@ module LegacyDry
   #   refactoring.title #=> 'Refactoring'
   #   refactoring.subtitle #=> 'Improving the Design of Existing Code'
   class Struct
-    extend Dry::Core::Extensions
-    include Dry::Core::Constants
+    extend LegacyDry::Core::Extensions
+    include LegacyDry::Core::Constants
     extend ClassInterface
 
-    include Dry::Equalizer(:__attributes__)
+    include LegacyDry::Equalizer(:__attributes__)
 
-    # {Dry::Types::Hash::Schema} subclass with specific behaviour defined for
-    # @return [Dry::Types::Hash::Schema]
+    # {LegacyDry::Types::Hash::Schema} subclass with specific behaviour defined for
+    # @return [LegacyDry::Types::Hash::Schema]
     defines :input
     input Types['coercible.hash'].schema(EMPTY_HASH)
 
@@ -110,7 +110,7 @@ module LegacyDry
     # @return [Object]
     #
     # @example
-    #   class Book < Dry::Struct
+    #   class Book < LegacyDry::Struct
     #     attribute :title, Types::Strict::String
     #     attribute :subtitle, Types::Strict::String.optional
     #   end
@@ -125,13 +125,13 @@ module LegacyDry
       @attributes.fetch(name) { raise MissingAttributeError.new(name) }
     end
 
-    # Converts the {Dry::Struct} to a hash with keys representing
+    # Converts the {LegacyDry::Struct} to a hash with keys representing
     # each attribute (as symbols) and their corresponding values
     #
     # @return [Hash{Symbol => Object}]
     #
     # @example
-    #   class Book < Dry::Struct
+    #   class Book < LegacyDry::Struct
     #     attribute :title, Types::Strict::String
     #     attribute :subtitle, Types::Strict::String.optional
     #   end
@@ -149,14 +149,14 @@ module LegacyDry
     end
     alias_method :to_h, :to_hash
 
-    # Create a copy of {Dry::Struct} with overriden attributes
+    # Create a copy of {LegacyDry::Struct} with overriden attributes
     #
     # @param [Hash{Symbol => Object}] changeset
     #
     # @return [Struct]
     #
     # @example
-    #   class Book < Dry::Struct
+    #   class Book < LegacyDry::Struct
     #     attribute :title, Types::Strict::String
     #     attribute :subtitle, Types::Strict::String.optional
     #   end
@@ -183,5 +183,5 @@ module LegacyDry
   end
 end
 
-require 'dry/struct/value'
-require 'dry/struct/extensions'
+require 'legacy_dry/struct/value'
+require 'legacy_dry/struct/extensions'

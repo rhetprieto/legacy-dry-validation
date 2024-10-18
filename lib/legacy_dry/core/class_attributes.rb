@@ -15,7 +15,7 @@ module LegacyDry
       #
       # @example
       #  class ExtraClass
-      #    extend Dry::Core::ClassAttributes
+      #    extend LegacyDry::Core::ClassAttributes
       #
       #    defines :hello
       #
@@ -25,7 +25,7 @@ module LegacyDry
       # @example with inheritance and type checking
       #
       #  class MyClass
-      #    extend Dry::Core::ClassAttributes
+      #    extend LegacyDry::Core::ClassAttributes
       #
       #    defines :one, :two, type: Integer
       #
@@ -46,15 +46,15 @@ module LegacyDry
       # @example with dry-types
       #
       #  class Foo
-      #    extend Dry::Core::ClassAttributes
+      #    extend LegacyDry::Core::ClassAttributes
       #
-      #    defines :one, :two, type: Dry::Types['strict.int']
+      #    defines :one, :two, type: LegacyDry::Types['strict.int']
       #  end
       #
       # @example with coercion using Proc
       #
       #  class Bar
-      #    extend Dry::Core::ClassAttributes
+      #    extend LegacyDry::Core::ClassAttributes
       #
       #    defines :one, coerce: proc { |value| value.to_s }
       #  end
@@ -62,9 +62,9 @@ module LegacyDry
       # @example with coercion using dry-types
       #
       #  class Bar
-      #    extend Dry::Core::ClassAttributes
+      #    extend LegacyDry::Core::ClassAttributes
       #
-      #    defines :one, coerce: Dry::Types['coercible.string']
+      #    defines :one, coerce: LegacyDry::Types['coercible.string']
       #  end
       #
       def defines(*args, type: ::Object, coerce: IDENTITY)

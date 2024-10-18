@@ -1,4 +1,4 @@
-require 'dry/types/coercions/json'
+require 'legacy_dry/types/coercions/json'
 
 module LegacyDry
   module Types

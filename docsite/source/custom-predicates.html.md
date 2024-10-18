@@ -22,7 +22,7 @@ You can also re-use a predicate container across multiple schemas:
 
 ``` ruby
 module MyPredicates
-  include Dry::Logic::Predicates
+  include LegacyDry::Logic::Predicates
 
   predicate(:email?) do |value|
     ! /magical-regex-that-matches-emails/.match(value).nil?

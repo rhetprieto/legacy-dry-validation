@@ -6,7 +6,7 @@ module LegacyDry
       def self.input_processor
         @input_processor ||=
           begin
-            if type_map.is_a?(Dry::Types::Safe) && config.input_processor != :noop
+            if type_map.is_a?(LegacyDry::Types::Safe) && config.input_processor != :noop
               type_map
             elsif type_map.size > 0 && config.input_processor != :noop
               build_hash_type(type_map)

@@ -63,7 +63,7 @@ module LegacyDry
 
       def lookup_type(name, category)
         id = "#{category}.#{name}"
-        Dry::Types.type_keys.include?(id) ? Dry::Types[id] : Dry::Types[name.to_s]
+        LegacyDry::Types.type_keys.include?(id) ? LegacyDry::Types[id] : LegacyDry::Types[name.to_s]
       end
     end
   end

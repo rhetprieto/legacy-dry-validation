@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
 module LegacyDry
   module Validation
@@ -10,7 +10,7 @@ module LegacyDry
       #
       # @api private
       class Template
-        include Dry::Equalizer(:text)
+        include LegacyDry::Equalizer(:text)
 
         TOKEN_REGEXP = /%{(\w*)}/
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'dry/monads/conversion_stubs'
-require 'dry/monads/constants'
-require 'dry/monads/right_biased'
+require 'legacy_dry/monads/conversion_stubs'
+require 'legacy_dry/monads/constants'
+require 'legacy_dry/monads/right_biased'
 
 module LegacyDry
   module Monads
@@ -57,7 +57,7 @@ module LegacyDry
       # Valid result
       #
       class Valid < Validated
-        include Dry::Equalizer(:value!)
+        include LegacyDry::Equalizer(:value!)
 
         def initialize(value)
           @value = value
@@ -151,7 +151,7 @@ module LegacyDry
         # @api public
         attr_reader :trace
 
-        include Dry::Equalizer(:error)
+        include LegacyDry::Equalizer(:error)
 
         def initialize(error, trace = RightBiased::Left.trace_caller)
           @error = error
@@ -228,11 +228,11 @@ module LegacyDry
       #
       module Mixin
         # Successful validation result
-        # @see Dry::Monads::Validated::Valid
+        # @see LegacyDry::Monads::Validated::Valid
         Valid = Valid
 
         # Unsuccessful validation result
-        # @see Dry::Monads::Validated::Invalid
+        # @see LegacyDry::Monads::Validated::Invalid
         Invalid = Invalid
 
         # Actual constructor methods
@@ -304,7 +304,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:validated, Validated::Mixin)
   end
 end

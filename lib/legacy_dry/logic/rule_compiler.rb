@@ -1,7 +1,7 @@
-require 'dry/core/constants'
+require 'legacy_dry/core/constants'
 
-require 'dry/logic/rule'
-require 'dry/logic/rule/predicate'
+require 'legacy_dry/logic/rule'
+require 'legacy_dry/logic/rule/predicate'
 
 module LegacyDry
   module Logic

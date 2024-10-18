@@ -1,4 +1,4 @@
-require 'dry/types/any'
+require 'legacy_dry/types/any'
 
 module LegacyDry
   module Types
@@ -61,6 +61,6 @@ module LegacyDry
   end
 end
 
-require 'dry/types/coercions'
-require 'dry/types/params'
-require 'dry/types/json'
+require 'legacy_dry/types/coercions'
+require 'legacy_dry/types/params'
+require 'legacy_dry/types/json'

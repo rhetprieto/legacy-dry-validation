@@ -1,10 +1,10 @@
-require 'dry/types/options'
+require 'legacy_dry/types/options'
 
 module LegacyDry
   module Types
     class Sum
       include Type
-      include Dry::Equalizer(:left, :right, :options, :meta)
+      include LegacyDry::Equalizer(:left, :right, :options, :meta)
       include Builder
       include Options
 
@@ -15,7 +15,7 @@ module LegacyDry
       attr_reader :right
 
       class Constrained < Sum
-        # @return [Dry::Logic::Operations::Or]
+        # @return [LegacyDry::Logic::Operations::Or]
         def rule
           left.rule | right.rule
         end

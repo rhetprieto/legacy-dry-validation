@@ -1,16 +1,16 @@
-require 'dry/types/decorator'
-require 'dry/types/constraints'
-require 'dry/types/constrained/coercible'
+require 'legacy_dry/types/decorator'
+require 'legacy_dry/types/constraints'
+require 'legacy_dry/types/constrained/coercible'
 
 module LegacyDry
   module Types
     class Constrained
       include Type
-      include Dry::Equalizer(:type, :options, :rule, :meta)
+      include LegacyDry::Equalizer(:type, :options, :rule, :meta)
       include Decorator
       include Builder
 
-      # @return [Dry::Logic::Rule]
+      # @return [LegacyDry::Logic::Rule]
       attr_reader :rule
 
       # @param [Type] type
@@ -57,7 +57,7 @@ module LegacyDry
       #   The options hash provided to {Types.Rule} and combined
       #   using {&} with previous {#rule}
       # @return [Constrained]
-      # @see Dry::Logic::Operators#and
+      # @see LegacyDry::Logic::Operators#and
       def constrained(options)
         with(rule: rule & Types.Rule(options))
       end

@@ -5,5 +5,5 @@ module LegacyDry
   end
 end
 
-require 'dry/logic/rule/predicate'
-require 'dry/logic/operations'
+require 'legacy_dry/logic/rule/predicate'
+require 'legacy_dry/logic/operations'

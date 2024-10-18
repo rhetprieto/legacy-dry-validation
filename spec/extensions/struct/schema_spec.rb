@@ -10,12 +10,12 @@ RSpec.describe LegacyDry::Validation::Schema, 'defining schema using legacy_dry 
   end
 
   before do
-    class Test::Name < Dry::Struct::Value
-      attribute :given_name, Dry::Types['strict.string']
-      attribute :family_name, Dry::Types['strict.string']
+    class Test::Name < LegacyDry::Struct::Value
+      attribute :given_name, LegacyDry::Types['strict.string']
+      attribute :family_name, LegacyDry::Types['strict.string']
     end
 
-    class Test::Person < Dry::Struct::Value
+    class Test::Person < LegacyDry::Struct::Value
       attribute :name, Test::Name
     end
   end

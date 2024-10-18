@@ -17,15 +17,15 @@ module LegacyDry
         module_function
 
         def to_maybe
-          raise "Load Maybe first with require 'dry/monads/maybe'"
+          raise "Load Maybe first with require 'legacy_dry/monads/maybe'"
         end
 
         def to_result
-          raise "Load Result first with require 'dry/monads/result'"
+          raise "Load Result first with require 'legacy_dry/monads/result'"
         end
 
         def to_validated
-          raise "Load Validated first with require 'dry/monads/validated'"
+          raise "Load Validated first with require 'legacy_dry/monads/validated'"
         end
       end
     end

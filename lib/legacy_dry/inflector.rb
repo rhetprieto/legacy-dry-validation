@@ -11,21 +11,21 @@ module LegacyDry
     # Instantiate the inflector
     #
     # @param blk [Proc] an optional block to specify custom inflection rules
-    # @yieldparam [Dry::Inflector::Inflections] the inflection rules
+    # @yieldparam [LegacyDry::Inflector::Inflections] the inflection rules
     #
-    # @return [Dry::Inflector] the inflector
+    # @return [LegacyDry::Inflector] the inflector
     #
     # @since 0.1.0
     #
     # @example Basic usage
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #
     # @example Custom inflection rules
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new do |inflections|
+    #   inflector = LegacyDry::Inflector.new do |inflections|
     #     inflections.plural      "virus",   "viruses" # specify a rule for #pluralize
     #     inflections.singular    "thieves", "thief"   # specify a rule for #singularize
     #     inflections.uncountable "dry-inflector"      # add an exception for an uncountable word
@@ -44,7 +44,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.camelize_lower("data_mapper") # => "dataMapper"
     def camelize_lower(input)
       internal_camelize(input, false)
@@ -60,9 +60,9 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.camelize_upper("data_mapper") # => "DataMapper"
-    #   inflector.camelize_upper("legacy_dry/inflector") # => "Dry::Inflector"
+    #   inflector.camelize_upper("legacy_dry/inflector") # => "LegacyDry::Inflector"
     def camelize_upper(input)
       internal_camelize(input, true)
     end
@@ -82,9 +82,9 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.constantize("Module")         # => Module
-    #   inflector.constantize("Dry::Inflector") # => Dry::Inflector
+    #   inflector.constantize("LegacyDry::Inflector") # => LegacyDry::Inflector
     def constantize(input)
       Object.const_get(input, false)
     end
@@ -99,7 +99,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.classify("books") # => "Book"
     def classify(input)
       camelize(singularize(input.to_s.split(".").last))
@@ -115,7 +115,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.dasherize("dry_inflector") # => "dry-inflector"
     def dasherize(input)
       input.to_s.tr("_", "-")
@@ -131,8 +131,8 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
-    #   inflector.demodulize("Dry::Inflector") # => "Inflector"
+    #   inflector = LegacyDry::Inflector.new
+    #   inflector.demodulize("LegacyDry::Inflector") # => "Inflector"
     def demodulize(input)
       input.to_s.split("::").last
     end
@@ -147,7 +147,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.humanize("dry_inflector") # => "Dry inflector"
     #   inflector.humanize("author_id")     # => "Author"
     def humanize(input)
@@ -170,7 +170,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.foreign_key("Message") => "message_id"
     def foreign_key(input)
       "#{underscore(demodulize(input))}_id"
@@ -186,7 +186,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.ordinalize(1)  # => "1st"
     #   inflector.ordinalize(2)  # => "2nd"
     #   inflector.ordinalize(3)  # => "3rd"
@@ -217,7 +217,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.pluralize("book")  # => "books"
     #   inflector.pluralize("money") # => "money"
     def pluralize(input)
@@ -237,7 +237,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.singularize("books") # => "book"
     #   inflector.singularize("money") # => "money"
     def singularize(input)
@@ -257,7 +257,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
       input = input.to_s.gsub("::", "_")
@@ -274,7 +274,7 @@ module LegacyDry
     # @example
     #   require "legacy_dry/inflector"
     #
-    #   inflector = Dry::Inflector.new
+    #   inflector = LegacyDry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
       input = input.to_s.gsub("::", "/")
@@ -306,7 +306,7 @@ module LegacyDry
     # @since 0.2.0
     # @api public
     def to_s
-      "#<Dry::Inflector>"
+      "#<LegacyDry::Inflector>"
     end
     alias_method :inspect, :to_s
 

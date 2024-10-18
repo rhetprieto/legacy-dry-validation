@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'dry/core/constants'
-require 'dry/monads/registry'
+require 'legacy_dry/core/constants'
+require 'legacy_dry/monads/registry'
 
 module LegacyDry
   # Common, idiomatic monads for Ruby
@@ -13,7 +13,7 @@ module LegacyDry
       if all_loaded?
         base.include(*constructors)
       else
-        raise "Load all monads first with require 'dry/monads/all'"
+        raise "Load all monads first with require 'legacy_dry/monads/all'"
       end
     end
 
@@ -22,10 +22,10 @@ module LegacyDry
     # monads to one class. Not loaded monads get loaded automatically.
     #
     # @example
-    #   require 'dry/monads'
+    #   require 'legacy_dry/monads'
     #
     #   class CreateUser
-    #     include Dry::Monads[:result, :do]
+    #     include LegacyDry::Monads[:result, :do]
     #
     #     def initialize(repo, send_email)
     #       @repo = repo

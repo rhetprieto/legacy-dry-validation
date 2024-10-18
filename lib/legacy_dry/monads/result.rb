@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
-require 'dry/monads/constants'
-require 'dry/monads/right_biased'
-require 'dry/monads/transformer'
-require 'dry/monads/conversion_stubs'
-require 'dry/monads/unit'
+require 'legacy_dry/monads/constants'
+require 'legacy_dry/monads/right_biased'
+require 'legacy_dry/monads/transformer'
+require 'legacy_dry/monads/conversion_stubs'
+require 'legacy_dry/monads/unit'
 
 module LegacyDry
   module Monads
@@ -66,12 +66,12 @@ module LegacyDry
       # @api public
       class Success < Result
         include RightBiased::Right
-        include Dry::Equalizer(:value!)
+        include LegacyDry::Equalizer(:value!)
 
         # Shortcut for Success([...])
         #
         #  @example
-        #    include Dry::Monads[:result]
+        #    include LegacyDry::Monads[:result]
         #
         #    def call
         #      Success[200, {}, ['ok']] # => Success([200, {}, ['ok']])
@@ -111,7 +111,7 @@ module LegacyDry
         # chaining of calls.
         #
         # @example
-        #   Dry::Monads.Success(4).fmap(&:succ).fmap(->(n) { n**2 }) # => Success(25)
+        #   LegacyDry::Monads.Success(4).fmap(&:succ).fmap(->(n) { n**2 }) # => Success(25)
         #
         # @param args [Array<Object>] arguments will be transparently passed through to #bind
         # @return [Result::Success]
@@ -122,7 +122,7 @@ module LegacyDry
         # Returns result of applying first function to the internal value.
         #
         # @example
-        #   Dry::Monads.Success(1).either(-> x { x + 1 }, -> x { x + 2 }) # => 2
+        #   LegacyDry::Monads.Success(1).either(-> x { x + 1 }, -> x { x + 2 }) # => 2
         #
         # @param f [#call] Function to apply
         # @param _ [#call] Ignored
@@ -154,14 +154,14 @@ module LegacyDry
       # @api public
       class Failure < Result
         include RightBiased::Left
-        include Dry::Equalizer(:failure)
+        include LegacyDry::Equalizer(:failure)
 
         singleton_class.send(:alias_method, :call, :new)
 
         # Shortcut for Failure([...])
         #
         #  @example
-        #    include Dry::Monads[:result]
+        #    include LegacyDry::Monads[:result]
         #
         #    def call
         #      Failure[:error, :not_found] # => Failure([:error, :not_found])
@@ -218,7 +218,7 @@ module LegacyDry
         # otherwise simply returns the first argument.
         #
         # @example
-        #   Dry::Monads.Failure(ArgumentError.new('error message')).or(&:message) # => "error message"
+        #   LegacyDry::Monads.Failure(ArgumentError.new('error message')).or(&:message) # => "error message"
         #
         # @param args [Array<Object>] arguments that will be passed to a block
         #                             if one was given, otherwise the first
@@ -235,8 +235,8 @@ module LegacyDry
         # A lifted version of `#or`. Wraps the passed value or the block result with Result::Success.
         #
         # @example
-        #   Dry::Monads.Failure.new('no value').or_fmap('value') # => Success("value")
-        #   Dry::Monads.Failure.new('no value').or_fmap { 'value' } # => Success("value")
+        #   LegacyDry::Monads.Failure.new('no value').or_fmap('value') # => Success("value")
+        #   LegacyDry::Monads.Failure.new('no value').or_fmap { 'value' } # => Success("value")
         #
         # @param args [Array<Object>] arguments will be passed to the underlying `#or` call
         # @return [Result::Success] Wrapped value
@@ -279,7 +279,7 @@ module LegacyDry
         # Returns result of applying second function to the internal value.
         #
         # @example
-        #   Dry::Monads.Failure(1).either(-> x { x + 1 }, -> x { x + 2 }) # => 3
+        #   LegacyDry::Monads.Failure(1).either(-> x { x + 1 }, -> x { x + 2 }) # => 3
         #
         # @param _ [#call] Ignored
         # @param g [#call] Function to call
@@ -351,7 +351,7 @@ module LegacyDry
     #
     # @example using dry-types
     #   module Types
-    #     include Dry::Types.module
+    #     include LegacyDry::Types.module
     #   end
     #
     #   class Operation
@@ -361,7 +361,7 @@ module LegacyDry
     #       Types.Value(:user_not_found) |
     #       Types.Value(:account_not_found)
     #
-    #     include Dry::Monads::Result(Error)
+    #     include LegacyDry::Monads::Result(Error)
     #
     #     def find_account(id)
     #       account = acount_repo.find(id)
@@ -425,7 +425,7 @@ module LegacyDry
       class Value < Try
         # @return [Result::Success]
         def to_result
-          Dry::Monads::Result::Success.new(@value)
+          LegacyDry::Monads::Result::Success.new(@value)
         end
       end
 
@@ -457,7 +457,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:result, Result::Mixin)
   end
 end

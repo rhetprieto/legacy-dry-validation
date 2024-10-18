@@ -1,9 +1,9 @@
-require 'dry/equalizer'
+require 'legacy_dry/equalizer'
 
 module LegacyDry
   module Types
     class Result
-      include Dry::Equalizer(:input)
+      include LegacyDry::Equalizer(:input)
 
       # @return [Object]
       attr_reader :input
@@ -26,7 +26,7 @@ module LegacyDry
       end
 
       class Failure < Result
-        include Dry::Equalizer(:input, :error)
+        include LegacyDry::Equalizer(:input, :error)
 
         # @return [#to_s]
         attr_reader :error

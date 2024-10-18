@@ -14,9 +14,9 @@ module LegacyDry
         # @param [Mixed] item
         # @param [Hash] options
         #
-        # @raise [Dry::Container::Error]
+        # @raise [LegacyDry::Container::Error]
         #
-        # @return [Dry::Container::Item::Base]
+        # @return [LegacyDry::Container::Item::Base]
         def call(item, options = {})
           options[:memoize] ? Memoizable.new(item, options) : Callable.new(item, options)
         end

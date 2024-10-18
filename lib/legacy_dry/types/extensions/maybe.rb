@@ -1,20 +1,20 @@
-require 'dry/monads/maybe'
-require 'dry/types/decorator'
+require 'legacy_dry/monads/maybe'
+require 'legacy_dry/types/decorator'
 
 module LegacyDry
   module Types
     class Maybe
       include Type
-      include Dry::Equalizer(:type, :options)
+      include LegacyDry::Equalizer(:type, :options)
       include Decorator
       include Builder
-      include Dry::Monads::Maybe::Mixin
+      include LegacyDry::Monads::Maybe::Mixin
 
-      # @param [Dry::Monads::Maybe, Object] input
-      # @return [Dry::Monads::Maybe]
+      # @param [LegacyDry::Monads::Maybe, Object] input
+      # @return [LegacyDry::Monads::Maybe]
       def call(input = Undefined)
         case input
-        when Dry::Monads::Maybe
+        when LegacyDry::Monads::Maybe
           input
         when Undefined
           None()
@@ -42,7 +42,7 @@ module LegacyDry
       end
 
       # @param [Object] value
-      # @see Dry::Types::Builder#default
+      # @see LegacyDry::Types::Builder#default
       # @raise [ArgumentError] if nil provided as default value
       def default(value)
         if value.nil?

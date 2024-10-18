@@ -1,4 +1,4 @@
-RSpec.shared_examples_for 'Dry::Types::Definition without primitive' do
+RSpec.shared_examples_for 'LegacyDry::Types::Definition without primitive' do
   def be_boolean
     satisfy { |x| x == true || x == false  }
   end
@@ -40,7 +40,7 @@ RSpec.shared_examples_for 'Dry::Types::Definition without primitive' do
   end
 end
 
-RSpec.shared_examples_for 'Dry::Types::Definition#meta' do
+RSpec.shared_examples_for 'LegacyDry::Types::Definition#meta' do
   describe '#meta' do
     it 'allows setting meta information' do
       with_meta = type.meta(foo: :bar).meta(baz: '1')
@@ -75,8 +75,8 @@ RSpec.shared_examples_for 'Dry::Types::Definition#meta' do
   end
 end
 
-RSpec.shared_examples_for Dry::Types::Definition do
-  it_behaves_like 'Dry::Types::Definition without primitive'
+RSpec.shared_examples_for LegacyDry::Types::Definition do
+  it_behaves_like 'LegacyDry::Types::Definition without primitive'
 
   describe '#primitive' do
     it 'returns a class' do
@@ -88,7 +88,7 @@ RSpec.shared_examples_for Dry::Types::Definition do
     it 'returns a constructor' do
       constructor = type.constructor(&:to_s)
 
-      expect(constructor).to be_a(Dry::Types::Type)
+      expect(constructor).to be_a(LegacyDry::Types::Type)
     end
   end
 end

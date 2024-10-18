@@ -1,9 +1,9 @@
-require 'dry/core/deprecations'
+require 'legacy_dry/core/deprecations'
 
-Dry::Core::Deprecations.warn('Form was renamed to Params and will be removed in the next version', tag: :'legacy_dry-validation')
+LegacyDry::Core::Deprecations.warn('Form was renamed to Params and will be removed in the next version', tag: :'legacy_dry-validation')
 
-require 'dry/types/compat/int'
-require 'dry/types/compat/form_types'
+require 'legacy_dry/types/compat/int'
+require 'legacy_dry/types/compat/form_types'
 require 'legacy_dry/validation/input_processor_compiler/params'
 require 'legacy_dry/validation/schema/params'
 

@@ -16,7 +16,7 @@ module LegacyDry
       #   Fallback block to call when a key is missing. Its result will be returned
       # @yieldparam [Mixed] key Missing key
       #
-      # @raise [Dry::Container::Error]
+      # @raise [LegacyDry::Container::Error]
       #   If the given key is not registered with the container (and no block provided)
       #
       #

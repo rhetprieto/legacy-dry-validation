@@ -1,4 +1,4 @@
-require 'dry/types/coercions/params'
+require 'legacy_dry/types/coercions/params'
 
 module LegacyDry
   module Types

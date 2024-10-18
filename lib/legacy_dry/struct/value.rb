@@ -6,7 +6,7 @@ module LegacyDry
     # using [`ice_nine`](https://github.com/dkubb/ice_nine)
     #
     # @example
-    #   class Location < Dry::Struct::Value
+    #   class Location < LegacyDry::Struct::Value
     #     attribute :lat, Types::Strict::Float
     #     attribute :lng, Types::Strict::Float
     #   end

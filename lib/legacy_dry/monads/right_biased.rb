@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'dry/monads/constants'
-require 'dry/monads/unit'
-require 'dry/monads/curry'
-require 'dry/monads/errors'
+require 'legacy_dry/monads/constants'
+require 'legacy_dry/monads/unit'
+require 'legacy_dry/monads/curry'
+require 'legacy_dry/monads/errors'
 
 module LegacyDry
   module Monads
@@ -36,7 +36,7 @@ module LegacyDry
         # If proc is nil, it expects a block to be given and will yield to it.
         #
         # @example
-        #   Dry::Monads.Right(4).bind(&:succ) # => 5
+        #   LegacyDry::Monads.Right(4).bind(&:succ) # => 5
         #
         # @param [Array<Object>] args arguments that will be passed to a block
         #                             if one was given, otherwise the first
@@ -65,8 +65,8 @@ module LegacyDry
         # when the result is a Right.
         #
         # @example
-        #   Dry::Monads.Right(4).tee { Right('ok') } # => Right(4)
-        #   Dry::Monads.Right(4).tee { Left('fail') } # => Left('fail')
+        #   LegacyDry::Monads.Right(4).tee { Right('ok') } # => Right(4)
+        #   LegacyDry::Monads.Right(4).tee { Left('fail') } # => Left('fail')
         #
         # @param [Array<Object>] args arguments will be transparently passed through to #bind
         # @return [RightBiased::Right]
@@ -109,7 +109,7 @@ module LegacyDry
         # otherwise returns the argument.
         #
         # @example happy path
-        #   create_user = Dry::Monads::Success(CreateUser.new)
+        #   create_user = LegacyDry::Monads::Success(CreateUser.new)
         #   name = Success("John")
         #   create_user.apply(name) # equivalent to CreateUser.new.call("John")
         #
@@ -132,11 +132,11 @@ module LegacyDry
           self.class == other.class && value! === other.value!
         end
 
-        # Maps the value to Dry::Monads::Unit, useful when you don't care
+        # Maps the value to LegacyDry::Monads::Unit, useful when you don't care
         # about the actual value.
         #
         # @example
-        #   Dry::Monads::Success(:success).discard
+        #   LegacyDry::Monads::Success(:success).discard
         #   # => Success(Unit)
         #
         # @return [RightBiased::Right]
@@ -147,7 +147,7 @@ module LegacyDry
         # Removes one level of monad structure by joining two values.
         #
         # @example
-        #   include Dry::Monads::Result::Mixin
+        #   include LegacyDry::Monads::Result::Mixin
         #   Success(Success(5)).flatten # => Success(5)
         #   Success(Failure(:not_a_number)).flatten # => Failure(:not_a_number)
         #   Failure(:not_a_number).flatten # => Failure(:not_a_number)
@@ -163,7 +163,7 @@ module LegacyDry
         # a monadic structure.
         #
         # @example
-        #   include Dry::Monads::Result::Mixin
+        #   include LegacyDry::Monads::Result::Mixin
         #
         #   Success(3).and(Success(5)) # => Success([3, 5])
         #   Success(3).and(Failure(:not_a_number)) # => Failure(:not_a_number)
@@ -290,9 +290,9 @@ module LegacyDry
         # Left-biased #bind version.
         #
         # @example
-        #   Dry::Monads.Left(ArgumentError.new('error message')).or(&:message) # => "error message"
-        #   Dry::Monads.None.or('no value') # => "no value"
-        #   Dry::Monads.None.or { Time.now } # => current time
+        #   LegacyDry::Monads.Left(ArgumentError.new('error message')).or(&:message) # => "error message"
+        #   LegacyDry::Monads.None.or('no value') # => "no value"
+        #   LegacyDry::Monads.None.or { Time.now } # => current time
         #
         # @return [Object]
         def or(*)
@@ -302,8 +302,8 @@ module LegacyDry
         # A lifted version of `#or`. This is basically `#or` + `#fmap`.
         #
         # @example
-        #   Dry::Monads.None.or('no value') # => Some("no value")
-        #   Dry::Monads.None.or { Time.now } # => Some(current time)
+        #   LegacyDry::Monads.None.or('no value') # => Some("no value")
+        #   LegacyDry::Monads.None.or { Time.now } # => Some(current time)
         #
         # @return [RightBiased::Left, RightBiased::Right]
         def or_fmap(*)

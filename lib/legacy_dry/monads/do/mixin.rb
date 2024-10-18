@@ -9,8 +9,8 @@ module LegacyDry
       # @example class-level mixin
       #
       #   class CreateUser
-      #     extend Dry::Monads::Do::Mixin
-      #     extend Dry::Monads[:result]
+      #     extend LegacyDry::Monads::Do::Mixin
+      #     extend LegacyDry::Monads[:result]
       #
       #     def self.run(params)
       #       self.call do

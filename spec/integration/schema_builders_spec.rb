@@ -2,7 +2,7 @@ RSpec.describe 'Building schemas' do
   describe 'LegacyDry::Validation.Schema' do
     it 'builds a schema class with custom predicate set' do
       predicates = Module.new do
-        include Dry::Logic::Predicates
+        include LegacyDry::Logic::Predicates
 
         def zomg?(*)
           true

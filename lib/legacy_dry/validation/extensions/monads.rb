@@ -1,9 +1,9 @@
-require 'dry/monads/result'
+require 'legacy_dry/monads/result'
 
 module LegacyDry
   module Validation
     class Result
-      include Dry::Monads::Result::Mixin
+      include LegacyDry::Monads::Result::Mixin
 
       def to_monad(options = EMPTY_HASH)
         if success?

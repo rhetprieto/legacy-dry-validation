@@ -1,5 +1,5 @@
-require 'dry/types'
-require 'dry/types/compiler'
+require 'legacy_dry/types'
+require 'legacy_dry/types/compiler'
 
 module LegacyDry
   module Validation
@@ -9,7 +9,7 @@ module LegacyDry
       DEFAULT_TYPE_NODE = [:definition, [String, {}]].freeze
 
       def initialize
-        @type_compiler = Dry::Types::Compiler.new(Dry::Types)
+        @type_compiler = LegacyDry::Types::Compiler.new(LegacyDry::Types)
       end
 
       def call(ast)
@@ -30,7 +30,7 @@ module LegacyDry
       end
 
       def visit_type(type, *args)
-        if type.is_a?(Dry::Types::Constructor)
+        if type.is_a?(LegacyDry::Types::Constructor)
           constructor(type)
         elsif type.respond_to?(:rule)
           visit(type.rule.to_ast, *args)
@@ -119,14 +119,14 @@ module LegacyDry
 
         type_value = if predicate == :type?
                        const = args[0]
-                       self.class::CONST_MAP[const] || Dry::Types.identifier(const)
+                       self.class::CONST_MAP[const] || LegacyDry::Types.identifier(const)
                      else
                        self.class::PREDICATE_MAP[predicate] || default
                      end
 
-        require 'dry/types/compat/int' unless Dry::Types.container.key?(type_value)
+        require 'legacy_dry/types/compat/int' unless LegacyDry::Types.container.key?(type_value)
 
-        Dry::Types[type_value].to_ast
+        LegacyDry::Types[type_value].to_ast
       end
     end
   end

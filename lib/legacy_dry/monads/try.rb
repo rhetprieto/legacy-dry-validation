@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'dry/equalizer'
-require 'dry/core/deprecations'
+require 'legacy_dry/equalizer'
+require 'legacy_dry/core/deprecations'
 
-require 'dry/monads/right_biased'
-require 'dry/monads/conversion_stubs'
+require 'legacy_dry/monads/right_biased'
+require 'legacy_dry/monads/conversion_stubs'
 
 module LegacyDry
   module Monads
@@ -63,7 +63,7 @@ module LegacyDry
         # Safely runs a block
         #
         # @example using Try with [] and a block (Ruby 2.5+)
-        #   include Dry::Monads::Try::Mixin
+        #   include LegacyDry::Monads::Try::Mixin
         #
         #   def safe_db_call
         #     Try[DatabaseError] { db_call }
@@ -101,7 +101,7 @@ module LegacyDry
       #
       # @api public
       class Value < Try
-        include Dry::Equalizer(:value!, :catchable)
+        include LegacyDry::Equalizer(:value!, :catchable)
         include RightBiased::Right
 
         # @return [Array<Exception>] List of exceptions to rescue
@@ -123,7 +123,7 @@ module LegacyDry
         # If proc is nil, it expects a block to be given and will yield to it.
         #
         # @example
-        #   success = Dry::Monads::Try::Value.new(ZeroDivisionError, 10)
+        #   success = LegacyDry::Monads::Try::Value.new(ZeroDivisionError, 10)
         #   success.bind(->(n) { n / 2 }) # => 5
         #   success.bind { |n| n / 0 } # => Try::Error(ZeroDivisionError: divided by 0)
         #
@@ -144,7 +144,7 @@ module LegacyDry
         # chaining of calls.
         #
         # @example
-        #   success = Dry::Monads::Try::Value.new(ZeroDivisionError, 10)
+        #   success = LegacyDry::Monads::Try::Value.new(ZeroDivisionError, 10)
         #   success.fmap(&:succ).fmap(&:succ).value # => 12
         #   success.fmap(&:succ).fmap { |n| n / 0 }.fmap(&:succ).value # => nil
         #
@@ -172,7 +172,7 @@ module LegacyDry
       #
       # @api public
       class Error < Try
-        include Dry::Equalizer(:exception)
+        include LegacyDry::Equalizer(:exception)
         include RightBiased::Left
 
         singleton_class.send(:alias_method, :call, :new)
@@ -217,7 +217,7 @@ module LegacyDry
       #
       # @example
       #   class Foo
-      #     include Dry::Monads::Try::Mixin
+      #     include LegacyDry::Monads::Try::Mixin
       #
       #     attr_reader :average
       #
@@ -229,7 +229,7 @@ module LegacyDry
       #   Foo.new(10, 2).average # => 5
       #   Foo.new(10, 0).average # => nil
       module Mixin
-        # @see Dry::Monads::Try
+        # @see LegacyDry::Monads::Try
         Try = Try
 
         # @private
@@ -285,7 +285,7 @@ module LegacyDry
       end
     end
 
-    require 'dry/monads/registry'
+    require 'legacy_dry/monads/registry'
     register_mixin(:try, Try::Mixin)
   end
 end

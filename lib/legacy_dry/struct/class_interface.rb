@@ -1,10 +1,10 @@
-require 'dry/core/class_attributes'
-require 'dry/core/inflector'
-require 'dry/core/descendants_tracker'
+require 'legacy_dry/core/class_attributes'
+require 'legacy_dry/core/inflector'
+require 'legacy_dry/core/descendants_tracker'
 
-require 'dry/struct/errors'
-require 'dry/struct/constructor'
-require 'dry/struct/sum'
+require 'legacy_dry/struct/errors'
+require 'legacy_dry/struct/constructor'
+require 'legacy_dry/struct/sum'
 
 module LegacyDry
   class Struct
@@ -12,8 +12,8 @@ module LegacyDry
     module ClassInterface
       include Core::ClassAttributes
 
-      include Dry::Types::Type
-      include Dry::Types::Builder
+      include LegacyDry::Types::Type
+      include LegacyDry::Types::Builder
 
       # @param [Class] klass
       def inherited(klass)
@@ -25,7 +25,7 @@ module LegacyDry
           @meta = base.meta
 
           unless equal?(Value)
-            extend Dry::Core::DescendantsTracker
+            extend LegacyDry::Core::DescendantsTracker
           end
         end
       end
@@ -34,8 +34,8 @@ module LegacyDry
       # and modifies {.schema} accordingly.
       #
       # @param [Symbol] name name of the defined attribute
-      # @param [Dry::Types::Definition, nil] type or superclass of nested type
-      # @return [Dry::Struct]
+      # @param [LegacyDry::Types::Definition, nil] type or superclass of nested type
+      # @return [LegacyDry::Struct]
       # @yield
       #   If a block is given, it will be evaluated in the context of
       #   a new struct class, and set as a nested type for the given
@@ -45,16 +45,16 @@ module LegacyDry
       #   same name as previously defined one
       #
       # @example with nested structs
-      #   class Language < Dry::Struct
+      #   class Language < LegacyDry::Struct
       #     attribute :name, Types::String
-      #     attribute :details, Dry::Struct do
+      #     attribute :details, LegacyDry::Struct do
       #       attribute :type, Types::String
       #     end
       #   end
       #
       #   Language.schema
       #     #=> {
-      #           :name=>#<Dry::Types::Definition primitive=String options={} meta={}>,
+      #           :name=>#<LegacyDry::Types::Definition primitive=String options={} meta={}>,
       #           :details=>Language::Details
       #         }
       #
@@ -64,10 +64,10 @@ module LegacyDry
       #   ruby.details.type #=> 'OO'
       #
       # @example with a nested array of structs
-      #   class Language < Dry::Struct
+      #   class Language < LegacyDry::Struct
       #     attribute :name, Types::String
       #     array :versions, Types::String
-      #     array :celebrities, Types::Array.of(Dry::Struct) do
+      #     array :celebrities, Types::Array.of(LegacyDry::Struct) do
       #       attribute :name, Types::String
       #       attribute :pseudonym, Types::String
       #     end
@@ -75,9 +75,9 @@ module LegacyDry
       #
       #   Language.schema
       #     #=> {
-      #           :name=>#<Dry::Types::Definition primitive=String options={} meta={}>,
-      #           :versions=>#<Dry::Types::Array::Member primitive=Array options={:member=>#<Dry::Types::Definition primitive=String options={} meta={}>} meta={}>,
-      #           :celebrities=>#<Dry::Types::Array::Member primitive=Array options={:member=>Language::Celebrity} meta={}>
+      #           :name=>#<LegacyDry::Types::Definition primitive=String options={} meta={}>,
+      #           :versions=>#<LegacyDry::Types::Array::Member primitive=Array options={:member=>#<LegacyDry::Types::Definition primitive=String options={} meta={}>} meta={}>,
+      #           :celebrities=>#<LegacyDry::Types::Array::Member primitive=Array options={:member=>Language::Celebrity} meta={}>
       #         }
       #
       #   ruby = Language.new(
@@ -101,25 +101,25 @@ module LegacyDry
       #   ruby.celebrities[1].pseudonym #=> 'tenderlove'
       def attribute(name, type = nil, &block)
         if block
-          type = Dry::Types[type] if type.is_a?(String)
+          type = LegacyDry::Types[type] if type.is_a?(String)
           type = struct_builder.(name, type, &block)
         elsif type.nil?
           raise(
             ArgumentError,
-            'you must supply a type or a block to `Dry::Struct.attribute`'
+            'you must supply a type or a block to `LegacyDry::Struct.attribute`'
           )
         end
 
         attributes(name => type)
       end
 
-      # @param [Hash{Symbol => Dry::Types::Definition}] new_schema
-      # @return [Dry::Struct]
+      # @param [Hash{Symbol => LegacyDry::Types::Definition}] new_schema
+      # @return [LegacyDry::Struct]
       # @raise [RepeatedAttributeError] when trying to define attribute with the
       #   same name as previously defined one
       # @see #attribute
       # @example
-      #   class Book < Dry::Struct
+      #   class Book < LegacyDry::Struct
       #     attributes(
       #       title: Types::String,
       #       author: Types::String
@@ -127,8 +127,8 @@ module LegacyDry
       #   end
       #
       #   Book.schema
-      #     #=> {title: #<Dry::Types::Definition primitive=String options={}>,
-      #     #    author: #<Dry::Types::Definition primitive=String options={}>}
+      #     #=> {title: #<LegacyDry::Types::Definition primitive=String options={}>,
+      #     #    author: #<LegacyDry::Types::Definition primitive=String options={}>}
       def attributes(new_schema)
         check_schema_duplication(new_schema)
 
@@ -157,7 +157,7 @@ module LegacyDry
       # @param [#call,nil] proc
       # @param [#call,nil] block
       # @example
-      #   class Book < Dry::Struct
+      #   class Book < LegacyDry::Struct
       #     transform_types { |t| t.meta(struct: :Book) }
       #
       #     attribute :title, Types::Strict::String
@@ -174,7 +174,7 @@ module LegacyDry
       # @param [#call,nil] proc
       # @param [#call,nil] block
       # @example
-      #   class Book < Dry::Struct
+      #   class Book < LegacyDry::Struct
       #     transform_keys(&:to_sym)
       #
       #     attribute :title, Types::Strict::String
@@ -186,7 +186,7 @@ module LegacyDry
         input input.with_key_transform(proc || block)
       end
 
-      # @param [Hash{Symbol => Dry::Types::Definition, Dry::Struct}] new_schema
+      # @param [Hash{Symbol => LegacyDry::Types::Definition, LegacyDry::Struct}] new_schema
       # @raise [RepeatedAttributeError] when trying to define attribute with the
       #   same name as previously defined one
       def check_schema_duplication(new_schema)
@@ -196,7 +196,7 @@ module LegacyDry
       end
       private :check_schema_duplication
 
-      # @param [Hash{Symbol => Object},Dry::Struct] attributes
+      # @param [Hash{Symbol => Object},LegacyDry::Struct] attributes
       # @raise [Struct::Error] if the given attributes don't conform {#schema}
       def new(attributes = default_attributes)
         if attributes.instance_of?(self)
@@ -211,8 +211,8 @@ module LegacyDry
       # Calls type constructor. The behavior is identical to `.new` but returns
       # the input back if it's a subclass of the struct.
       #
-      # @param [Hash{Symbol => Object},Dry::Struct] attributes
-      # @return [Dry::Struct]
+      # @param [Hash{Symbol => Object},LegacyDry::Struct] attributes
+      # @return [LegacyDry::Struct]
       def call(attributes = default_attributes)
         return attributes if attributes.is_a?(self)
         new(attributes)
@@ -222,15 +222,15 @@ module LegacyDry
       # @param [#call,nil] constructor
       # @param [Hash] _options
       # @param [#call,nil] block
-      # @return [Dry::Struct::Constructor]
+      # @return [LegacyDry::Struct::Constructor]
       def constructor(constructor = nil, **_options, &block)
         Struct::Constructor.new(self, fn: constructor || block)
       end
 
-      # @param [Hash{Symbol => Object},Dry::Struct] input
-      # @yieldparam [Dry::Types::Result::Failure] failure
-      # @yieldreturn [Dry::Types::ResultResult]
-      # @return [Dry::Types::Result]
+      # @param [Hash{Symbol => Object},LegacyDry::Struct] input
+      # @yieldparam [LegacyDry::Types::Result::Failure] failure
+      # @yieldreturn [LegacyDry::Types::ResultResult]
+      # @return [LegacyDry::Types::Result]
       def try(input)
         Types::Result::Success.new(self[input])
       rescue Struct::Error => e
@@ -238,8 +238,8 @@ module LegacyDry
         block_given? ? yield(failure) : failure
       end
 
-      # @param [Hash{Symbol => Object},Dry::Struct] input
-      # @return [Dry::Types::Result]
+      # @param [Hash{Symbol => Object},LegacyDry::Struct] input
+      # @return [LegacyDry::Types::Result]
       # @private
       def try_struct(input)
         if input.is_a?(self)
@@ -250,15 +250,15 @@ module LegacyDry
       end
 
       # @param [({Symbol => Object})] args
-      # @return [Dry::Types::Result::Success]
+      # @return [LegacyDry::Types::Result::Success]
       def success(*args)
         result(Types::Result::Success, *args)
       end
 
       # @param [({Symbol => Object})] args
-      # @return [Dry::Types::Result::Failure]
+      # @return [LegacyDry::Types::Result::Failure]
       def failure(*args)
-        result(::Dry::Types::Result::Failure, *args)
+        result(::LegacyDry::Types::Result::Failure, *args)
       end
 
       # @param [Class] klass
@@ -272,7 +272,7 @@ module LegacyDry
         false
       end
 
-      # @param [Object, Dry::Struct] value
+      # @param [Object, LegacyDry::Struct] value
       # @return [Boolean]
       def valid?(value)
         self === value
@@ -301,7 +301,7 @@ module LegacyDry
         schema.key?(key)
       end
 
-      # @return [Hash{Symbol => Dry::Types::Definition, Dry::Struct}]
+      # @return [Hash{Symbol => LegacyDry::Types::Definition, LegacyDry::Struct}]
       def schema
         input.member_types
       end
@@ -325,8 +325,8 @@ module LegacyDry
       end
 
       # Build a sum type
-      # @param [Dry::Types::Type] type
-      # @return [Dry::Types::Sum]
+      # @param [LegacyDry::Types::Type] type
+      # @return [LegacyDry::Types::Sum]
       def |(type)
         if type.is_a?(Class) && type <= Struct
           Struct::Sum.new(self, type)
@@ -353,9 +353,9 @@ module LegacyDry
       end
       private :default_attributes
 
-      # Checks if the given type is a Dry::Struct
+      # Checks if the given type is a LegacyDry::Struct
       #
-      # @param [Dry::Types::Definition, Dry::Struct] type
+      # @param [LegacyDry::Types::Definition, LegacyDry::Struct] type
       # @return [Boolean]
       def struct?(type)
         type.is_a?(Class) && type <= Struct

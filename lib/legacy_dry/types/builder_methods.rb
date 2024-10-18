@@ -13,9 +13,9 @@ module LegacyDry
       # @example
       #   Types::Strings = Types.Array(Types::String)
       #
-      # @param [Dry::Types::Type] type
+      # @param [LegacyDry::Types::Type] type
       #
-      # @return [Dry::Types::Array]
+      # @return [LegacyDry::Types::Array]
       def Array(type)
         self::Array.of(type)
       end
@@ -23,9 +23,9 @@ module LegacyDry
       # Build a hash schema
       #
       # @param [Symbol] schema Schema type
-      # @param [Hash{Symbol => Dry::Types::Type}] type_map
+      # @param [Hash{Symbol => LegacyDry::Types::Type}] type_map
       #
-      # @return [Dry::Types::Array]
+      # @return [LegacyDry::Types::Array]
       # @api public
       def Hash(schema, type_map)
         self::Hash.public_send(schema, type_map)
@@ -41,7 +41,7 @@ module LegacyDry
       #
       # @param [Class,Module] klass Class or module
       #
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       # @api public
       def Instance(klass)
         Definition.new(klass).constrained(type: klass)
@@ -53,7 +53,7 @@ module LegacyDry
       #
       # @param [Object] value
       #
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       # @api public
       def Value(value)
         Definition.new(value.class).constrained(eql: value)
@@ -64,7 +64,7 @@ module LegacyDry
       #
       # @param [Object] object
       #
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       # @api public
       def Constant(object)
         Definition.new(object.class).constrained(is: object)
@@ -77,7 +77,7 @@ module LegacyDry
       # @param [#call,nil] cons Value constructor
       # @param [#call,nil] block Value constructor
       #
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       # @api public
       def Constructor(klass, cons = nil, &block)
         Definition.new(klass).constructor(cons || block || klass.method(:new))
@@ -87,7 +87,7 @@ module LegacyDry
       #
       # @param [Class] klass
       #
-      # @return [Dry::Types::Type]
+      # @return [LegacyDry::Types::Type]
       # @api public
       def Definition(klass)
         Definition.new(klass)
@@ -102,7 +102,7 @@ module LegacyDry
       # @param [Type] key_type Key type
       # @param [Type] value_type Value type
       #
-      # @return [Dry::Types::Map]
+      # @return [LegacyDry::Types::Map]
       # @api public
       def Map(key_type, value_type)
         Types['hash'].map(key_type, value_type)

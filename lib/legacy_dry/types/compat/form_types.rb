@@ -1,6 +1,6 @@
-require 'dry/core/deprecations'
+require 'legacy_dry/core/deprecations'
 
-Dry::Core::Deprecations.warn('Form types were renamed to Params', tag: :'dry-types')
+LegacyDry::Core::Deprecations.warn('Form types were renamed to Params', tag: :'dry-types')
 
 module LegacyDry
   module Types
