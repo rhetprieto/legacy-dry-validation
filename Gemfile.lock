@@ -4,12 +4,6 @@ PATH
     legacy-dry-validation (0.13.3)
       concurrent-ruby (~> 1.0)
       dry-configurable (= 0.13)
-      dry-container (= 0.8)
-      dry-core (= 0.6.0)
-      dry-equalizer (~> 0.2)
-      dry-logic (~> 0.5)
-      dry-struct (~> 0.5.0)
-      dry-types (= 0.14)
 
 GEM
   remote: https://rubygems.org/
@@ -74,11 +68,11 @@ GEM
       dry-equalizer (~> 0.2)
       dry-types (~> 0.13)
       ice_nine (~> 0.11)
-    dry-types (0.14.0)
+    dry-types (0.15.0)
       concurrent-ruby (~> 1.0)
       dry-container (~> 0.3)
       dry-core (~> 0.4, >= 0.4.4)
-      dry-equalizer (~> 0.2)
+      dry-equalizer (~> 0.2, >= 0.2.2)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 0.5, >= 0.5)
     erubis (2.7.0)

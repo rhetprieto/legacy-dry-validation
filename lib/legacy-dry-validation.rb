@@ -1,1 +1,8 @@
 require 'legacy_dry/validation'
+require 'legacy_dry/container'
+require 'legacy_dry/core'
+require 'legacy_dry/equalizer'
+require 'legacy_dry/logic'
+require 'legacy_dry/monads'
+require 'legacy_dry/struct'
+require 'legacy_dry/types'
