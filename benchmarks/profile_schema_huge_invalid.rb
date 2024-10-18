@@ -1,7 +1,7 @@
 require_relative 'suite'
 require 'hotch'
 
-require 'dry-validation'
+require 'legacy-dry-validation'
 
 I18n.locale = :en
 I18n.backend.load_translations
@@ -9,7 +9,7 @@ I18n.backend.load_translations
 COUNT = ENV['COUNT'].to_i
 FIELDS = COUNT.times.map { |i| :"field_#{i}" }
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     config.messages = :i18n
   end

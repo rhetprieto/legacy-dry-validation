@@ -1,4 +1,4 @@
-RSpec.describe Dry::Validation::MessageCompiler, '#visit_failure' do
+RSpec.describe LegacyDry::Validation::MessageCompiler, '#visit_failure' do
   include_context :message_compiler
 
   let(:visitor) { :visit_failure }

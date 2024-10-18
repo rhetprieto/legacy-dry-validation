@@ -1,13 +1,13 @@
 ---
 title: Array As Input
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 A schema can accept either a hash or an array as the input. If you want to define a schema for an array, simply use `each`:
 
 ``` ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   each do
     schema do
       required(:name).filled(:str?)

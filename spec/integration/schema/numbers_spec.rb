@@ -1,6 +1,6 @@
-RSpec.describe Dry::Validation::Schema do
+RSpec.describe LegacyDry::Validation::Schema do
   subject(:schema) do
-    Dry::Validation.Schema do
+    LegacyDry::Validation.Schema do
       required(:age).filled(:number?, :int?)
     end
   end

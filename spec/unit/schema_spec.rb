@@ -1,4 +1,4 @@
-require 'dry/validation/messages/i18n'
+require 'legacy_dry/validation/messages/i18n'
 
 RSpec.describe Schema do
   describe '.messages' do

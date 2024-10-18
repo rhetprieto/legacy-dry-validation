@@ -1,7 +1,7 @@
 ---
 title: Comparison With ActiveModel
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 order: 10
 ---
 
@@ -33,7 +33,7 @@ A predicate is a simple stateless method which receives some input and returns e
 A simple schema can look like this:
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:email).filled
   required(:name).filled
 end
@@ -88,7 +88,7 @@ You could acheive something to ActiveModel's `validates_associated`  by using a 
 **dry-validation**
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:name).filled
   required(:email).filled
 
@@ -113,7 +113,7 @@ schema.({
 **dry-validation**
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:name).filled
   required(:email).filled
 
@@ -294,7 +294,7 @@ required(:attr).filled(size?: int)
 As with ActiveModel Validations, dry-validation counts characters by default. ActiveModel provides a `:tokeniser` option to allow you to customise how the value is split. You can achieve the same thing in dry-validation by creating your own predicate e.g.:
 
 ```ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   configure do
     def word_count?(options, value)
       words = value.split(/\s+/).size # split into seperate words
@@ -321,7 +321,7 @@ validates :attr, numericality: true
 **dry-validation**
 
 ```ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   # if you know what type of number you require then simply use one of the options below:
   required(:attr).filled(:int?)
   required(:attr).filled(:float?)
@@ -429,7 +429,7 @@ validates :attr, numericality: { odd: true }
 **dry-validation**
 
 ```ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:attr).filled(:int?, :odd?)
 end
 ```
@@ -445,7 +445,7 @@ validates :attr, numericality: { even: true }
 **dry-validation**
 
 ```ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:attr).filled(:int?, :even?)
 end
 ```
@@ -491,7 +491,7 @@ end
 If you want to be sure that an association is present, you'll need to create a custom predicate to test whether the associated object itself is present. Here is a simple example of what such a predicate might look like:
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     def is_record?(class, value)
       class.where(id: value).any?
@@ -546,7 +546,7 @@ We can therefore simply check that our ids are nil/ empty:
 **dry-validation**
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:name).filled
   required(:email).filled
   required(:spouse_id).value(:none?) # single association
@@ -585,7 +585,7 @@ end
 
 **dry-validation**
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     option :record
 
@@ -606,7 +606,7 @@ Note that our query checks for any records in our class which have the same valu
 To limit the scope of your query you can simply update your query as needed or as in our example below add a scope paramenter to your custom predicate for example:
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     option :record
 
@@ -628,7 +628,7 @@ There is also a :case_sensitive option that you can use to define whether the un
 Depending on your chosen database, you might find that searches are case insensitive anyway. If not then you could simply update your query to perform a case insensitive search. The exact implementation will depend on your database but here's an example that works with PostgreSQL.
 
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     option :account
 
@@ -674,7 +674,7 @@ In dry-validation we don't provide such a helper. You can acheive the same thing
 Now for those of you who have been paying attention, for this simple example we could use our `format?` predicate to validate this. However, lets for arguments sake say that we want to do this via a custom predicate what might that look like?
 
 ```ruby
-  schema = Dry::Validation.Schema do
+  schema = LegacyDry::Validation.Schema do
     configure do
       def starts_with_uppercase?(value)
         value =~ /^[A-Z]*/ # check that the first character in our string is uppercase
@@ -771,7 +771,7 @@ end
 
 Put it all together and you get:
 ```ruby
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:payment_type).filled(included_in?: ["card", "cash", "cheque"])
   optional(:card_number).maybe
 

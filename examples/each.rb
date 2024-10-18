@@ -1,7 +1,7 @@
 require 'byebug'
-require 'dry-validation'
+require 'legacy-dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   key(:phone_numbers).each(:str?)
 end
 

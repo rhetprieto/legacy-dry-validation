@@ -1,7 +1,7 @@
 require 'benchmark/ips'
 require 'active_model'
 
-require 'dry-validation'
+require 'legacy-dry-validation'
 
 I18n.locale = :en
 I18n.backend.load_translations
@@ -19,7 +19,7 @@ class User
   end
 end
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     config.messages = :i18n
   end
@@ -28,7 +28,7 @@ schema = Dry::Validation.Schema do
   required(:age).filled(:int?, gt?: 18)
 end
 
-form = Dry::Validation.Params do
+form = LegacyDry::Validation.Params do
   configure do
     config.messages = :i18n
     config.type_specs = true
@@ -52,11 +52,11 @@ Benchmark.ips do |x|
     user.errors
   end
 
-  x.report('dry-validation / schema') do
+  x.report('legacy_dry-validation / schema') do
     schema.(coerced).messages
   end
 
-  x.report('dry-validation / form') do
+  x.report('legacy_dry-validation / form') do
     form.(params).messages
   end
 

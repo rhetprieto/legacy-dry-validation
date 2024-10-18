@@ -1,7 +1,7 @@
 ---
 title: Predicate Logic
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 Schema DSL allows you to define validation rules using predicate logic. All common logic operators are supported and you can use them to **compose rules**. This simple technique is very powerful as it allows you to compose validations in such a way that invalid state will not crash one of your rules. Validation is a process that always depends on specific conditions, in that sense, `dry-validation` schemas have rules that are always conditional, they are executed only if defined conditions are met.
@@ -11,7 +11,7 @@ This document explains how rule composition works in terms of predicate logic.
 ### Conjunction (and)
 
 ``` ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:age) { int? & gt?(18) }
 end
 ```
@@ -21,7 +21,7 @@ end
 ### Disjunction (or)
 
 ``` ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:age) { none? | int? }
 end
 ```
@@ -31,7 +31,7 @@ end
 ### Implication (then)
 
 ``` ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:age) { filled? > int? }
 end
 ```
@@ -43,7 +43,7 @@ end
 ### Exclusive Disjunction (xor)
 
 ``` ruby
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:eat_cookie).filled
   required(:have_cookie).filled
 

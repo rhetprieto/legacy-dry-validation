@@ -1,6 +1,6 @@
 RSpec.describe 'Reusing schemas' do
   subject(:schema) do
-    Dry::Validation.Schema do
+    LegacyDry::Validation.Schema do
       required(:city).filled
 
       required(:location).schema(LocationSchema)
@@ -8,7 +8,7 @@ RSpec.describe 'Reusing schemas' do
   end
 
   before do
-    LocationSchema = Dry::Validation.Schema do
+    LocationSchema = LegacyDry::Validation.Schema do
       configure { config.input_processor = :params }
 
       required(:lat).filled(:float?)

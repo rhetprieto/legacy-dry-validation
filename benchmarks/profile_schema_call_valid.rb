@@ -1,7 +1,7 @@
 require_relative 'suite'
 require 'hotch'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure { config.messages = :i18n }
 
   required(:email).filled

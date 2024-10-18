@@ -1,13 +1,13 @@
 ---
 title: Struct
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 ---
 
 This extension allows schema to use `dry-struct`
 
 ``` ruby
-Dry::Validation.load_extensions(:struct)
+LegacyDry::Validation.load_extensions(:struct)
 
 class Name < Dry::Struct::Value
   attribute :given_name, Dry::Types['strict.string']
@@ -18,7 +18,7 @@ class Person < Dry::Struct::Value
   attribute :name, Name
 end
 
-Dry::Validation.Schema do
+LegacyDry::Validation.Schema do
   required(:person).filled(Person)
 end
 ```

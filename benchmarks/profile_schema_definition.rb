@@ -3,7 +3,7 @@ require 'hotch'
 
 Hotch() do
   1000.times do
-    Dry::Validation.Schema do
+    LegacyDry::Validation.Schema do
       configure { config.messages = :i18n }
 
       required(:email).filled

@@ -61,7 +61,7 @@
 ### Changed
 
 - Code updated to work with `dry-types` 0.13.1 and `dry-struct` 0.5.0, these are now minimal supported versions (flash-gordon)
-- [BREAKING] `Form` was renamed to `Params` to be consistent with the latest changes from `dry-types`. You can `require 'dry/validation/compat/form'` to use the previous names but it will be removed in the next version (flash-gordon)
+- [BREAKING] `Form` was renamed to `Params` to be consistent with the latest changes from `dry-types`. You can `require 'legacy_dry/validation/compat/form'` to use the previous names but it will be removed in the next version (flash-gordon)
 
 [Compare v0.11.1...v0.12.0](https://github.com/dry-rb/dry-validation/compare/v0.11.1...v0.12.0)
 
@@ -152,9 +152,9 @@
 - Support for `or` error messages ie "must be a string or must be an integer" (solnic)
 - Support for retrieving error messages exclusively via `schema.(input).errors` (solnic)
 - Support for retrieving hint messages exclusively via `schema.(input).hints` (solnic)
-- Support for opt-in extensions loaded via `Dry::Validation.load_extensions(:my_ext)` (flash-gordon)
+- Support for opt-in extensions loaded via `LegacyDry::Validation.load_extensions(:my_ext)` (flash-gordon)
 - Add `:monads` extension which transforms a result instance to `Either` monad, `schema.(input).to_either` (flash-gordon)
-- Add `dry-struct` integration via an extension activated by `Dry::Validation.load_extensions(:struct)` (flash-gordon)
+- Add `dry-struct` integration via an extension activated by `LegacyDry::Validation.load_extensions(:struct)` (flash-gordon)
 
 ### Fixed
 
@@ -394,11 +394,11 @@
     validated value
   - `confirmation` - for confirmation validation
 - Support for `value(:foo).eql?(value(:bar))` syntax in high-level rules (solnic)
-- New DSL for defining schema objects `Dry::Validation.Schema do .. end` (solnic)
+- New DSL for defining schema objects `LegacyDry::Validation.Schema do .. end` (solnic)
 - Ability to define a schema for an array via top-level `each` rule (solnic)
 - Ability to define nested schemas via `key(:location).schema do .. end` (solnic)
 - Ability to re-use schemas inside other schemas via `key(:location).schema(LocationSchema)` (solnic)
-- Ability to inherit rules from another schema via `Dry::Validation.Schema(Other) do .. end` (solnic)
+- Ability to inherit rules from another schema via `LegacyDry::Validation.Schema(Other) do .. end` (solnic)
 - Ability to inject arbitrary dependencies to schemas via `Schema.option` + `Schema#with` (solnic)
 - Ability to provide translations for rule names under `%{locale}.rules.%{name}` pattern (solnic)
 - Ability to configure input processor, either `:form` or `:sanitizer` (solnic)

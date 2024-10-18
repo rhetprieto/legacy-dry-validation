@@ -1,6 +1,6 @@
 RSpec.describe 'Schema / Injecting Rules' do
   subject(:schema) do
-    Dry::Validation.Schema(rules: other.class.rules) do
+    LegacyDry::Validation.Schema(rules: other.class.rules) do
       required(:email).maybe
 
       rule(:email) { value(:login).true? > value(:email).filled? }
@@ -8,7 +8,7 @@ RSpec.describe 'Schema / Injecting Rules' do
   end
 
   let(:other) do
-    Dry::Validation.Schema do
+    LegacyDry::Validation.Schema do
       required(:login) { |value| value.bool? }
     end
   end

@@ -1,7 +1,7 @@
 RSpec.describe 'Predicates: custom' do
   context 'with custom predicate' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         configure do
           config.messages_file = 'spec/fixtures/locales/en.yml'
 
@@ -15,7 +15,7 @@ RSpec.describe 'Predicates: custom' do
     end
 
     context 'with valid input' do
-      let(:input) { { foo: 'test@dry-rb.org' } }
+      let(:input) { { foo: 'test@legacy_dry-rb.org' } }
 
       it 'is successful' do
         expect(result).to be_successful
@@ -33,7 +33,7 @@ RSpec.describe 'Predicates: custom' do
 
   context 'with custom predicates as module' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         configure do
           config.messages_file = 'spec/fixtures/locales/en.yml'
           predicates (Module.new do
@@ -69,7 +69,7 @@ RSpec.describe 'Predicates: custom' do
   context 'without custom predicate' do
     it 'raises error if try to use an unknown predicate' do
       expect do
-        Dry::Validation.Schema do
+        LegacyDry::Validation.Schema do
           required(:foo) { email? }
         end
       end.to raise_error(ArgumentError, '+email?+ is not a valid predicate name')
@@ -78,7 +78,7 @@ RSpec.describe 'Predicates: custom' do
 
   context 'with nested validations' do
     subject(:schema) do
-      Dry::Validation.Schema do
+      LegacyDry::Validation.Schema do
         required(:details).schema do
           configure do
             config.messages_file = 'spec/fixtures/locales/en.yml'

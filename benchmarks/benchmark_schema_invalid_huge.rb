@@ -1,7 +1,7 @@
 require 'benchmark/ips'
 
 require 'active_model'
-require 'dry-validation'
+require 'legacy-dry-validation'
 
 I18n.locale = :en
 I18n.backend.load_translations
@@ -22,7 +22,7 @@ class User
   end
 end
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   configure do
     config.messages = :i18n
   end
@@ -44,7 +44,7 @@ Benchmark.ips do |x|
     user.errors
   end
 
-  x.report('dry-validation / schema') do
+  x.report('legacy_dry-validation / schema') do
     schema.(data).messages
   end
 

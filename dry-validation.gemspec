@@ -1,8 +1,8 @@
-require File.expand_path('../lib/dry/validation/version', __FILE__)
+require File.expand_path('../lib/legacy_dry/validation/version', __FILE__)
 
 Gem::Specification.new do |spec|
-  spec.name          = 'dry-validation'
-  spec.version       = Dry::Validation::VERSION
+  spec.name          = 'legacy-dry-validation'
+  spec.version       = LegacyDry::Validation::VERSION
   spec.authors       = ['Andy Holland', 'Piotr Solnica']
   spec.email         = ['andyholland1991@aol.com', 'piotr.solnica@gmail.com']
   spec.summary       = 'A simple validation library'

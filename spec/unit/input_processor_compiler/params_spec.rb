@@ -1,5 +1,5 @@
-RSpec.describe Dry::Validation::InputProcessorCompiler::Params, '#call' do
-  subject(:compiler) { Dry::Validation::InputProcessorCompiler::Params.new }
+RSpec.describe LegacyDry::Validation::InputProcessorCompiler::Params, '#call' do
+  subject(:compiler) { LegacyDry::Validation::InputProcessorCompiler::Params.new }
 
   include_context 'predicate helper'
 
@@ -45,7 +45,7 @@ RSpec.describe Dry::Validation::InputProcessorCompiler::Params, '#call' do
     { 'email' => 'jane@doe.org', 'age' => '20', 'address' => 'City, Street 1/2' }
   end
 
-  it 'builds an input dry-data type' do
+  it 'builds an input legacy_dry-data type' do
     input_type = compiler.(rule_ast)
 
     result = input_type[output]

@@ -1,6 +1,6 @@
 RSpec.describe 'Schema with negated rules' do
   subject(:schema) do
-    Dry::Validation.Schema do
+    LegacyDry::Validation.Schema do
       configure do
         def self.messages
           Messages.default.merge(

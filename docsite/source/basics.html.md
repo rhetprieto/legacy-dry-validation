@@ -1,7 +1,7 @@
 ---
 title: Basics
 layout: gem-single
-name: dry-validation
+name: legacy_dry-validation
 sections:
   - predicate-logic
   - built-in-predicates
@@ -21,7 +21,7 @@ This can be easily expressed through the DSL:
 ``` ruby
 require 'dry-validation'
 
-schema = Dry::Validation.Schema do
+schema = LegacyDry::Validation.Schema do
   required(:email).filled(:str?)
   required(:age).filled(:int?, gt?: 18)
 end

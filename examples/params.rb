@@ -1,6 +1,6 @@
-require 'dry-validation'
+require 'legacy-dry-validation'
 
-schema = Dry::Validation.Params do
+schema = LegacyDry::Validation.Params do
   required(:email).filled
 
   required(:age).filled(:int?, gt?: 18)

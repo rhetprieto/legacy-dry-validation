@@ -1,6 +1,6 @@
-RSpec.describe Dry::Validation::Schema::JSON, 'defining a schema' do
+RSpec.describe LegacyDry::Validation::Schema::JSON, 'defining a schema' do
   subject(:schema) do
-    Dry::Validation.JSON do
+    LegacyDry::Validation.JSON do
       configure do
         def email?(value)
           true
@@ -120,7 +120,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'defining a schema' do
 
   describe 'with nested schema in a high-level rule' do
     subject(:schema) do
-      Dry::Validation.JSON do
+      LegacyDry::Validation.JSON do
         required(:address).maybe(:hash?)
 
         required(:delivery).filled(:bool?)
@@ -132,7 +132,7 @@ RSpec.describe Dry::Validation::Schema::JSON, 'defining a schema' do
     end
 
     before do
-      AddressSchema = Dry::Validation.JSON do
+      AddressSchema = LegacyDry::Validation.JSON do
         required(:city).filled
         required(:zipcode).filled(:int?)
       end

@@ -3,7 +3,7 @@ title: Introduction
 description: Powerful data validation based on predicate logic
 layout: gem-single
 type: gem
-name: dry-validation
+name: legacy_dry-validation
 sections:
   - basics
   - predicates
@@ -54,7 +54,7 @@ Possible use-cases include validation of:
 ### Synopsis
 
 ``` ruby
-UserSchema = Dry::Validation.Schema do
+UserSchema = LegacyDry::Validation.Schema do
   required(:name).filled
 
   required(:email).filled(format?: EMAIL_REGEX)
@@ -74,5 +74,5 @@ UserSchema.(
   address: { street: 'Street 1', city: 'NYC', zipcode: '1234' }
 ).inspect
 
-# #<Dry::Validation::Result output={:name=>"Jane", :email=>"jane@doe.org", :address=>{:street=>"Street 1", :city=>"NYC", :zipcode=>"1234"}} messages={:age=>["age is missing"]}>
+# #<LegacyDry::Validation::Result output={:name=>"Jane", :email=>"jane@doe.org", :address=>{:street=>"Street 1", :city=>"NYC", :zipcode=>"1234"}} messages={:age=>["age is missing"]}>
 ```
