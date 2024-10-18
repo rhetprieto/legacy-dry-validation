@@ -6,4 +6,4 @@ bin/
 log/
 tmp/
 .idea/
-Gemfile.lock
+vendor

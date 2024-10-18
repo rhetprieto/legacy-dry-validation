@@ -6,7 +6,7 @@ module Dry
     module Deprecations
       extend Dry::Configurable
 
-      setting :logger, Logger.new($stdout)
+      setting :logger, default: Logger.new($stdout)
 
       def self.format(msg, caller)
         "#{msg} [#{caller[1].split(':')[0..1].join(' line ')}]"

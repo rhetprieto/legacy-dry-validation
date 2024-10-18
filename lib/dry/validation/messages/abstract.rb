@@ -15,11 +15,11 @@ module Dry
 
         DEFAULT_PATH = Pathname(__dir__).join('../../../../config/errors.yml').realpath.freeze
 
-        setting :paths, [DEFAULT_PATH]
-        setting :root, 'errors'.freeze
-        setting :lookup_options, [:root, :predicate, :rule, :val_type, :arg_type].freeze
+        setting :paths, default: [DEFAULT_PATH]
+        setting :root, default: 'errors'.freeze
+        setting :lookup_options, default: [:root, :predicate, :rule, :val_type, :arg_type].freeze
 
-        setting :lookup_paths, %w(
+        setting :lookup_paths, default: %w(
           %{root}.rules.%{rule}.%{predicate}.arg.%{arg_type}
           %{root}.rules.%{rule}.%{predicate}
           %{root}.%{predicate}.%{message_type}
@@ -31,14 +31,14 @@ module Dry
           %{root}.%{predicate}
         ).freeze
 
-        setting :arg_type_default, 'default'.freeze
-        setting :val_type_default, 'default'.freeze
+        setting :arg_type_default, default: 'default'.freeze
+        setting :val_type_default, default: 'default'.freeze
 
-        setting :arg_types, Hash.new { |*| config.arg_type_default }.update(
+        setting :arg_types, default: Hash.new { |*| config.arg_type_default }.update(
           Range => 'range'
         )
 
-        setting :val_types, Hash.new { |*| config.val_type_default }.update(
+        setting :val_types, default: Hash.new { |*| config.val_type_default }.update(
           Range => 'range',
           String => 'string'
         )
