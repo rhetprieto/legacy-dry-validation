@@ -8,22 +8,23 @@ module Dry
     class Schema
       extend Dry::Configurable
       extend TypeSpecs
+
       extend PredicateRegistry::PredicateDetector
 
       NOOP_INPUT_PROCESSOR = -> input { input }
 
       setting :path
-      setting :predicates, Dry::Validation::Predicates
+      setting :predicates, default: Dry::Validation::Predicates
       setting :registry
-      setting :messages, :yaml
+      setting :messages, default: :yaml
       setting :messages_file
       setting :namespace
-      setting :rules, []
-      setting :checks, []
-      setting :options, {}
-      setting :input, nil
-      setting :input_rule, nil
-      setting :dsl_extensions, nil
+      setting :rules, default: []
+      setting :checks, default: []
+      setting :options, default: {}
+      setting :input, default: nil
+      setting :input_rule, default: nil
+      setting :dsl_extensions, default: nil
 
       DEFAULT_PROCESSOR_MAP = {
         sanitizer: InputProcessorCompiler::Sanitizer.new,
@@ -31,9 +32,9 @@ module Dry
         params: InputProcessorCompiler::Params.new,
       }
 
-      setting :input_processor_map, DEFAULT_PROCESSOR_MAP
+      setting :input_processor_map, default: DEFAULT_PROCESSOR_MAP
 
-      setting :type_specs, false
+      setting :type_specs, default: false
 
       def self.new(rules = config.rules, **options)
         super(rules, default_options.merge(options))

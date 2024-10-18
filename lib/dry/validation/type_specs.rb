@@ -4,9 +4,9 @@ module Dry
       def self.extended(klass)
         super
         klass.class_eval do
-          setting :input_processor, :noop
-          setting :hash_type, :weak
-          setting :type_map, {}
+          setting :input_processor, default: :noop
+          setting :hash_type, default: :weak
+          setting :type_map, default: {}
         end
       end
 
