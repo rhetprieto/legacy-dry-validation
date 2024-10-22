@@ -1,21 +1,18 @@
-[gem]: https://rubygems.org/gems/dry-validation
-[travis]: https://travis-ci.org/dry-rb/dry-validation
-[codeclimate]: https://codeclimate.com/github/dry-rb/dry-validation
-[coveralls]: https://coveralls.io/r/dry-rb/dry-validation
-[inchpages]: http://inch-ci.org/github/dry-rb/dry-validation
+# legacy-dry-validation [![Join the chat at https://gitter.im/dry-rb/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dry-rb/chat)
 
-# dry-validation [![Join the chat at https://gitter.im/dry-rb/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dry-rb/chat)
+## Description
 
-[![Gem Version](https://badge.fury.io/rb/dry-validation.svg)][gem]
-[![Build Status](https://travis-ci.org/dry-rb/dry-validation.svg?branch=master)][travis]
-[![Code Climate](https://codeclimate.com/github/dry-rb/dry-validation/badges/gpa.svg)][codeclimate]
-[![Test Coverage](https://codeclimate.com/github/dry-rb/dry-validation/badges/coverage.svg)][codeclimate]
-[![Inline docs](http://inch-ci.org/github/dry-rb/dry-validation.svg?branch=master)][inchpages]
+This fork of dry-validation is based of v0.13 but works under a different namespace `LegacyDry` to avoid conflicts with the original gem. It doesn't depend on any other dry-rb gems, except for dry-configurable v0.13+, which is a very small dependency.
 
-## Status
+This will allow you to use both the latest version of dry-validation and this legacy version in the same project. Then you can migrate your codebase to the latest version of dry-validation at your own pace. 
 
-We're working on a new foundation for dry-validation, called dry-schema. You can see progress in [this PR](https://github.com/dry-rb/dry-schema/pull/3). This will result in a partial rewrite for 1.0.0 version. Currently known bugs/issues will be addressed in 1.0.0, **not in 0.x** due to lack of time. More info about 1.0.0 plans can be found [in this thread](https://discourse.dry-rb.org/t/plans-for-dry-validation-dry-schema-a-new-gem/215/3).
+## Instructions
 
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'legacy-dry-validation', git: 'rhetprieto/legacy-dry-validation', branch: "0-13-legacy-locked"
+```
 ## Links
 
 * [Documentation](http://dry-rb.org/gems/dry-validation)
